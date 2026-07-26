@@ -2,8 +2,8 @@
 
 The deployed application is static. GitHub Pages serves the interface,
 catalogue, and precomputed document vectors. Supabase Storage serves the video
-and image assets. MiniLM query inference, cosine similarity, and BM25 all run
-inside the visitor's browser.
+and image assets. Quantized Arctic Embed query inference, cosine similarity,
+BM25, and focused query-intent guards all run inside the visitor's browser.
 
 ## 1. Confirm video-sharing permission
 
@@ -33,7 +33,13 @@ source .venv/bin/activate
 python -m pip install -r requirements-research.txt
 
 python scripts/build_reviewed_web_demo.py
-npm run prepare:deploy
+PYTHONPATH=scripts python scripts/build_search_index.py \
+  --model models/text-embedding/snowflake-arctic-embed-s \
+  --pooling cls \
+  --query-prefix "Represent this sentence for searching relevant passages: " \
+  --browser-model Snowflake/snowflake-arctic-embed-s \
+  --cosine-weight 0.9
+node scripts/sync_deploy_catalog.mjs publish
 ```
 
 On Windows PowerShell, activate the environment with
@@ -41,7 +47,9 @@ On Windows PowerShell, activate the environment with
 
 The reviewed web builder removes obsolete files only from `public/demo`.
 Original videos, tracking states, graphs, and annotations under `data/` remain
-untouched.
+untouched. The Arctic model must be available at
+`models/text-embedding/snowflake-arctic-embed-s`; model weights are intentionally
+excluded from Git.
 
 ## 4. Upload media to Supabase Storage
 
@@ -53,6 +61,13 @@ export SUPABASE_SERVICE_ROLE_KEY="sb_secret_YOUR_SECRET_KEY"
 export SUPABASE_BUCKET="presslens-media"
 
 node scripts/upload_supabase_assets.mjs
+```
+
+To update only the broadcast and canonical MP4s referenced by the current
+manifest:
+
+```bash
+node scripts/upload_supabase_assets.mjs --videos-only
 ```
 
 The script uploads only media referenced by the current manifest. At the end it
@@ -90,8 +105,10 @@ https://USERNAME.github.io/REPOSITORY/
 ```
 
 On the first search, the browser downloads and caches the quantized
-`Xenova/all-MiniLM-L6-v2` model from Hugging Face. Later searches use the cached
-model. Video media is loaded from Supabase.
+`Snowflake/snowflake-arctic-embed-s` model from Hugging Face. The deployed
+index uses CLS pooling, the model's retrieval query prefix, and a 90/10
+semantic-to-BM25 blend. Later searches use the cached model. Video media is
+loaded from Supabase.
 
 ## 7. Update the deployed dataset
 
@@ -101,9 +118,10 @@ After changing review decisions or clips:
 2. Commit the updated files in `deploy/catalog/`.
 3. Push to `main`.
 
-Because uploaded objects use a one-year cache header, use new filenames when
-the bytes of an existing clip change, or purge/re-upload the object before
-testing.
+Because uploaded objects use a one-year cache header, use versioned filenames
+when the bytes of an existing clip change (for example, `-v2.mp4`), then update
+both the video and canonical-video paths in the retained manifest. This avoids
+clients receiving stale media.
 
 ## Local production test
 

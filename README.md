@@ -4,8 +4,8 @@
 
 PressLens is a football-intelligence application for retrieving tactical
 situations from match video with natural-language queries. It combines
-browser-side MiniLM embeddings, BM25 text matching, reconstructed pitch graphs,
-and synchronized video evidence.
+browser-side Arctic text embeddings, BM25 text matching, reconstructed pitch
+graphs, and synchronized video evidence.
 
 Live application: <https://lqh52.github.io/presslens/>
 
@@ -78,9 +78,12 @@ The example environment file contains no credentials. The development and
 build commands automatically restore the committed retrieval catalogue into
 `public/demo`.
 
-The first search downloads a quantized MiniLM model from Hugging Face and
-caches it in the browser. Search then runs locally: 65% normalized embedding
-cosine similarity and 35% normalized BM25 lexical relevance.
+The first search downloads the quantized
+`Snowflake/snowflake-arctic-embed-s` model from Hugging Face and caches it in
+the browser. Search then runs locally: 90% normalized embedding cosine
+similarity and 10% normalized BM25 lexical relevance. Narrow intent guards
+handle explicit negation and abstain for unsupported situations such as set
+pieces and low blocks. The retrieval score is relevance, not probability.
 
 Run the application checks:
 
@@ -95,7 +98,7 @@ The hosted version uses:
 
 - GitHub Pages for the static interface and retrieval catalogue;
 - object storage for video and image assets;
-- Hugging Face for the browser-compatible MiniLM model.
+- Hugging Face for the browser-compatible Arctic embedding model.
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for setup and update instructions.
 
@@ -127,6 +130,13 @@ inside the application.
 
 Touchline-trap classes remain experimental and are not presented as supported
 classes without retained reviewed examples.
+
+The published catalogue currently retains eight reviewed, four-second source
+videos. Each result provides a synchronized annotated broadcast and canonical
+pitch video. The current `v2` media includes player boxes above the retained
+confidence threshold, reviewed team identities, graph edges, and ball
+position. Tactical-training, synthetic-label, and annotation interfaces remain
+research-only and are not part of the published application.
 
 ## Data and licensing
 

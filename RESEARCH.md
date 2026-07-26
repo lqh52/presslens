@@ -97,9 +97,11 @@ The full research path is:
 ### Current implementation and research hypothesis
 
 The current application implements the final retrieval and evidence interface.
-It uses MiniLM text embeddings and BM25 over structured descriptions attached
-to reviewed clips. It does not yet claim a learned tactical embedding from
-synthetic graphs.
+It uses browser-side Snowflake Arctic Embed S text embeddings and BM25 over
+structured descriptions attached to reviewed clips. The deployed blend is 90%
+normalized semantic similarity and 10% normalized BM25, with narrow guards for
+explicit negation and unsupported query intents. It does not yet claim a
+learned tactical embedding from synthetic graphs.
 
 The next modelling stage tests the central hypothesis:
 
@@ -118,6 +120,11 @@ The system therefore separates two evaluation tasks:
 The supported classes are central screen, high press, and no local pressure.
 Left and right touchline traps should be treated as experimental until enough
 reviewed examples exist.
+
+The published application retains eight reviewed four-second clips with
+synchronized annotated broadcast and canonical-pitch videos. Synthetic
+tactical training, touchline-trap experiments, and labeling interfaces remain
+local research tools and are not included in the deployment catalogue.
 
 ## 2. Recommended experimental design
 
@@ -435,6 +442,18 @@ After review decisions are final:
 ```bash
 python scripts/build_reviewed_web_demo.py
 npm run prepare:deploy
+```
+
+For the current Arctic browser index, rebuild explicitly with:
+
+```bash
+PYTHONPATH=scripts python scripts/build_search_index.py \
+  --model models/text-embedding/snowflake-arctic-embed-s \
+  --pooling cls \
+  --query-prefix "Represent this sentence for searching relevant passages: " \
+  --browser-model Snowflake/snowflake-arctic-embed-s \
+  --cosine-weight 0.9
+node scripts/sync_deploy_catalog.mjs publish
 ```
 
 The web builder removes obsolete files only from `public/demo`. Raw video,
