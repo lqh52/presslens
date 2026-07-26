@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { bm25Scores } from "./browser-retrieval";
+import { bm25Scores, tacticalQueryIntent } from "./browser-retrieval";
 
 const documents = [
   "Tactical situation high press dense pressure around build up",
@@ -17,4 +17,23 @@ describe("browser BM25 retrieval", () => {
     const scores = bm25Scores("high press", documents);
     expect(scores.indexOf(Math.max(...scores))).toBe(0);
   });
+});
+
+describe("tactical query intent", () => {
+  it.each([
+    ["not a high press", "unstructured"],
+    ["defenders are not pressing", "unstructured"],
+    ["passive defensive shape", "unstructured"],
+    ["intense pressure high up the pitch", "high_press"],
+    ["block the number ten space", "central_screen"],
+  ])("maps %s to %s", (query, expected) => {
+    expect(tacticalQueryIntent(query).preferred).toBe(expected);
+  });
+
+  it.each(["corner kick", "low block", "red card"])(
+    "abstains for unsupported query %s",
+    (query) => {
+      expect(tacticalQueryIntent(query).unsupported).toBe(true);
+    },
+  );
 });

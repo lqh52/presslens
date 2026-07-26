@@ -27,11 +27,18 @@ def browser_payload(
     situations: list[str],
     documents: list[str],
     vectors: np.ndarray,
+    *,
+    browser_model: str,
+    pooling: str,
+    query_prefix: str,
+    cosine_weight: float,
 ) -> dict:
     return {
-        "model": "Xenova/all-MiniLM-L6-v2",
+        "model": browser_model,
         "dimensions": int(vectors.shape[1]),
-        "weights": {"cosine": 0.65, "bm25": 0.35},
+        "pooling": pooling,
+        "queryPrefix": query_prefix,
+        "weights": {"cosine": cosine_weight, "bm25": 1.0 - cosine_weight},
         "items": [
             {
                 "id": identifier,
@@ -74,7 +81,16 @@ def main() -> None:
         default=Path("public/demo/search-index.json"),
     )
     parser.add_argument("--device", default="cpu")
+    parser.add_argument("--pooling", choices=("mean", "cls"), default="mean")
+    parser.add_argument("--query-prefix", default="")
+    parser.add_argument(
+        "--browser-model",
+        default="Xenova/all-MiniLM-L6-v2",
+    )
+    parser.add_argument("--cosine-weight", type=float, default=0.65)
     args = parser.parse_args()
+    if not 0 <= args.cosine_weight <= 1:
+        parser.error("--cosine-weight must be between 0 and 1")
 
     manifest = json.loads(args.manifest.read_text())
     ids = [str(clip["id"]) for clip in manifest["clips"]]
@@ -84,7 +100,11 @@ def main() -> None:
     documents = [
         retrieval_document(clip) for clip in manifest["clips"]
     ]
-    vectors = TextEmbedder(args.model, args.device).encode(documents)
+    vectors = TextEmbedder(
+        args.model,
+        args.device,
+        pooling=args.pooling,
+    ).encode(documents)
 
     args.vector_output.parent.mkdir(parents=True, exist_ok=True)
     np.savez_compressed(
@@ -102,6 +122,10 @@ def main() -> None:
                 situations,
                 documents,
                 vectors,
+                browser_model=args.browser_model,
+                pooling=args.pooling,
+                query_prefix=args.query_prefix,
+                cosine_weight=args.cosine_weight,
             ),
             separators=(",", ":"),
         )

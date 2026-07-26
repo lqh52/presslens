@@ -8,6 +8,7 @@ const configuredProjectUrl = process.env.SUPABASE_URL;
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const bucket = process.env.SUPABASE_BUCKET ?? "presslens-media";
 const assetRoot = process.env.PRESSLENS_ASSET_ROOT ?? "public/demo";
+const videosOnly = process.argv.includes("--videos-only");
 
 if (!configuredProjectUrl || !serviceRoleKey) {
   throw new Error(
@@ -52,6 +53,7 @@ if (bucketError && !bucketError.message.toLowerCase().includes("already exists")
 
 for (const relativePath of [...relativePaths].sort()) {
   const extension = extname(relativePath).toLowerCase();
+  if (videosOnly && extension !== ".mp4") continue;
   const body = await readFile(join(assetRoot, relativePath));
   const { error } = await supabase.storage
     .from(bucket)

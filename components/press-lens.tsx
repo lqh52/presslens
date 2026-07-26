@@ -265,7 +265,7 @@ export function PressLens() {
           <button className="mobile-menu" aria-label="Open menu"><Menu size={20} /></button>
           <div className="crumbs"><strong>Tactical retrieval.</strong></div>
           <div className="top-actions">
-            <span className="model-pill"><Sparkles size={14} /> MiniLM + BM25 · {manifest.videoCount} videos</span>
+            <span className="model-pill"><Sparkles size={14} /> Arctic Embed + BM25 · {manifest.videoCount} videos</span>
           </div>
         </header>
 
@@ -336,7 +336,7 @@ export function PressLens() {
                 ))}
                 {searching
                   ? <div className="empty-state"><span className="loading-dot" /><strong>Updating retrieval results…</strong><span>The previous ranking has been cleared.</span></div>
-                  : !results.length && <div className="empty-state"><Search size={22} /><strong>No states match these filters</strong><span>Clear a filter or try broader tactical language.</span></div>}
+                  : !results.length && <div className="empty-state"><Search size={22} /><strong>{submittedQuery ? "No reliable tactical match" : "No states match these filters"}</strong><span>{submittedQuery ? "This query is outside the tactical situations currently indexed." : "Clear a filter or try broader tactical language."}</span></div>}
               </div>
             </div>
           </section>
@@ -350,7 +350,7 @@ export function PressLens() {
               </div>
               <div className="detail-topline"><span className="eyebrow">Selected model evidence</span></div>
               <div className="confidence-explainer">
-                <div><span>Retrieval match</span><strong>{selectedRetrievalScore === undefined ? "—" : `${Math.round(selectedRetrievalScore * 100)}%`}</strong><small>65% normalized semantic cosine plus 35% normalized BM25 lexical relevance. Not a probability.</small></div>
+                <div><span>Retrieval match</span><strong>{selectedRetrievalScore === undefined ? "—" : `${Math.round(selectedRetrievalScore * 100)}%`}</strong><small>90% normalized semantic cosine plus 10% normalized BM25 lexical relevance, with narrow tactical-intent guards. Not a probability.</small></div>
                 <div><span>Classification confidence</span><strong>{selected.confidence}%</strong><small>Mean classifier probability for the accepted class across the selected excerpt.</small></div>
                 <div><span>Majority support</span><strong>{selected.majorityFrames}/{selected.validFrames}</strong><small>Valid frames assigned to this video’s final majority label.</small></div>
               </div>

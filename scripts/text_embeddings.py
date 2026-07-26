@@ -110,17 +110,32 @@ def hybrid_scores(
 
 
 class TextEmbedder:
-    def __init__(self, model_path: Path = DEFAULT_MODEL, device: str = "cpu") -> None:
+    def __init__(
+        self,
+        model_path: Path = DEFAULT_MODEL,
+        device: str = "cpu",
+        *,
+        pooling: str = "mean",
+    ) -> None:
         self.device = torch.device(device)
+        if pooling not in {"mean", "cls"}:
+            raise ValueError(f"Unsupported pooling: {pooling}")
+        self.pooling = pooling
         self.tokenizer = AutoTokenizer.from_pretrained(model_path)
         self.model = AutoModel.from_pretrained(model_path).to(self.device).eval()
 
-    def encode(self, texts: list[str], batch_size: int = 32) -> np.ndarray:
+    def encode(
+        self,
+        texts: list[str],
+        batch_size: int = 32,
+        *,
+        prefix: str = "",
+    ) -> np.ndarray:
         rows = []
         with torch.inference_mode():
             for start in range(0, len(texts), batch_size):
                 tokens = self.tokenizer(
-                    texts[start : start + batch_size],
+                    [prefix + text for text in texts[start : start + batch_size]],
                     padding=True,
                     truncation=True,
                     max_length=256,
@@ -128,7 +143,10 @@ class TextEmbedder:
                 )
                 tokens = {key: value.to(self.device) for key, value in tokens.items()}
                 output = self.model(**tokens).last_hidden_state
-                mask = tokens["attention_mask"].unsqueeze(-1)
-                pooled = (output * mask).sum(1) / mask.sum(1).clamp_min(1)
+                if self.pooling == "cls":
+                    pooled = output[:, 0]
+                else:
+                    mask = tokens["attention_mask"].unsqueeze(-1)
+                    pooled = (output * mask).sum(1) / mask.sum(1).clamp_min(1)
                 rows.append(functional.normalize(pooled, p=2, dim=1).cpu().numpy())
         return np.concatenate(rows).astype(np.float32)

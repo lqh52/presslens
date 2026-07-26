@@ -10,59 +10,59 @@
       "id": "lei-ars-20150926-h1-0093",
       "half": 1,
       "startSeconds": 2455.0,
-      "path": "/demo/video-lei-ars-20150926-h1-0093-annotated.mp4"
+      "path": "/demo/video-lei-ars-20150926-h1-0093-annotated-v2.mp4"
     },
     {
       "id": "hul-ars-20160917-h1-0009",
       "half": 1,
       "startSeconds": 205.0,
-      "path": "/demo/video-hul-ars-20160917-h1-0009-annotated.mp4"
+      "path": "/demo/video-hul-ars-20160917-h1-0009-annotated-v2.mp4"
     },
     {
       "id": "ars-che-20160924-h2-0058",
       "half": 2,
       "startSeconds": 1645.0,
-      "path": "/demo/video-ars-che-20160924-h2-0058-annotated.mp4"
+      "path": "/demo/video-ars-che-20160924-h2-0058-annotated-v2.mp4"
     },
     {
       "id": "ars-che-20160924-h2-0067",
       "half": 2,
       "startSeconds": 1885.0,
-      "path": "/demo/video-ars-che-20160924-h2-0067-annotated.mp4"
+      "path": "/demo/video-ars-che-20160924-h2-0067-annotated-v2.mp4"
     },
     {
       "id": "bur-ars-20150411-h1-0128",
       "half": 1,
       "startSeconds": 128,
-      "path": "/demo/video-h1-128-annotated.mp4"
+      "path": "/demo/video-h1-128-annotated-v2.mp4"
     },
     {
       "id": "bur-ars-20150411-h1-0203",
       "half": 1,
       "startSeconds": 203,
-      "path": "/demo/video-h1-203-annotated.mp4"
+      "path": "/demo/video-h1-203-annotated-v2.mp4"
     },
     {
       "id": "bur-ars-20150411-h1-0833",
       "half": 1,
       "startSeconds": 833,
-      "path": "/demo/video-h1-833-annotated.mp4"
+      "path": "/demo/video-h1-833-annotated-v2.mp4"
     },
     {
       "id": "bur-ars-20150411-h1-1673",
       "half": 1,
       "startSeconds": 1673,
-      "path": "/demo/video-h1-1673-annotated.mp4"
+      "path": "/demo/video-h1-1673-annotated-v2.mp4"
     }
   ],
   "clips": [
     {
       "id": "lei-ars-20150926-h1-0093",
       "videoId": "lei-ars-20150926-h1-0093",
-      "video": "/demo/video-lei-ars-20150926-h1-0093-annotated.mp4",
+      "video": "/demo/video-lei-ars-20150926-h1-0093-annotated-v2.mp4",
       "match": "2015-09-26 - 17-00 Leicester 2 - 5 Arsenal",
       "canonicalImage": "/demo/canonical-lei-ars-20150926-h1-0093.png",
-      "canonicalVideo": "/demo/canonical-lei-ars-20150926-h1-0093.mp4",
+      "canonicalVideo": "/demo/canonical-lei-ars-20150926-h1-0093-v2.mp4",
       "minute": "41:00.4",
       "half": 1,
       "timeSeconds": 2.96,
@@ -481,10 +481,10 @@
     {
       "id": "hul-ars-20160917-h1-0009",
       "videoId": "hul-ars-20160917-h1-0009",
-      "video": "/demo/video-hul-ars-20160917-h1-0009-annotated.mp4",
+      "video": "/demo/video-hul-ars-20160917-h1-0009-annotated-v2.mp4",
       "match": "2016-09-17 - 17-00 Hull City 1 - 4 Arsenal",
       "canonicalImage": "/demo/canonical-hul-ars-20160917-h1-0009.png",
-      "canonicalVideo": "/demo/canonical-hul-ars-20160917-h1-0009.mp4",
+      "canonicalVideo": "/demo/canonical-hul-ars-20160917-h1-0009-v2.mp4",
       "minute": "03:27.8",
       "half": 1,
       "timeSeconds": 0.84,
@@ -897,10 +897,10 @@
     {
       "id": "ars-che-20160924-h2-0058",
       "videoId": "ars-che-20160924-h2-0058",
-      "video": "/demo/video-ars-che-20160924-h2-0058-annotated.mp4",
+      "video": "/demo/video-ars-che-20160924-h2-0058-annotated-v2.mp4",
       "match": "2016-09-24 - 19-30 Arsenal 3 - 0 Chelsea",
       "canonicalImage": "/demo/canonical-ars-che-20160924-h2-0058.png",
-      "canonicalVideo": "/demo/canonical-ars-che-20160924-h2-0058.mp4",
+      "canonicalVideo": "/demo/canonical-ars-che-20160924-h2-0058-v2.mp4",
       "minute": "72:29.6",
       "half": 2,
       "timeSeconds": 2.2,
@@ -1397,10 +1397,10 @@
     {
       "id": "ars-che-20160924-h2-0067",
       "videoId": "ars-che-20160924-h2-0067",
-      "video": "/demo/video-ars-che-20160924-h2-0067-annotated.mp4",
+      "video": "/demo/video-ars-che-20160924-h2-0067-annotated-v2.mp4",
       "match": "2016-09-24 - 19-30 Arsenal 3 - 0 Chelsea",
       "canonicalImage": "/demo/canonical-ars-che-20160924-h2-0067.png",
-      "canonicalVideo": "/demo/canonical-ars-che-20160924-h2-0067.mp4",
+      "canonicalVideo": "/demo/canonical-ars-che-20160924-h2-0067-v2.mp4",
       "minute": "76:29.0",
       "half": 2,
       "timeSeconds": 2.56,
@@ -1789,10 +1789,10 @@
     {
       "id": "bur-ars-20150411-h1-0128",
       "videoId": "bur-ars-20150411-h1-0128",
-      "video": "/demo/video-h1-128-annotated.mp4",
+      "video": "/demo/video-h1-128-annotated-v2.mp4",
       "match": "2015-04-11 - 19-30 Burnley 0 - 1 Arsenal",
       "canonicalImage": "/demo/canonical-h1-128.png",
-      "canonicalVideo": "/demo/canonical-h1-128.mp4",
+      "canonicalVideo": "/demo/canonical-h1-128-v2.mp4",
       "minute": "02:19.5",
       "half": 1,
       "timeSeconds": 3.48,
@@ -1906,10 +1906,10 @@
     {
       "id": "bur-ars-20150411-h1-0203",
       "videoId": "bur-ars-20150411-h1-0203",
-      "video": "/demo/video-h1-203-annotated.mp4",
+      "video": "/demo/video-h1-203-annotated-v2.mp4",
       "match": "2015-04-11 - 19-30 Burnley 0 - 1 Arsenal",
       "canonicalImage": "/demo/canonical-h1-203.png",
-      "canonicalVideo": "/demo/canonical-h1-203.mp4",
+      "canonicalVideo": "/demo/canonical-h1-203-v2.mp4",
       "minute": "03:27.3",
       "half": 1,
       "timeSeconds": 2.0,
@@ -2060,10 +2060,10 @@
     {
       "id": "bur-ars-20150411-h1-0833",
       "videoId": "bur-ars-20150411-h1-0833",
-      "video": "/demo/video-h1-833-annotated.mp4",
+      "video": "/demo/video-h1-833-annotated-v2.mp4",
       "match": "2015-04-11 - 19-30 Burnley 0 - 1 Arsenal",
       "canonicalImage": "/demo/canonical-h1-833.png",
-      "canonicalVideo": "/demo/canonical-h1-833.mp4",
+      "canonicalVideo": "/demo/canonical-h1-833-v2.mp4",
       "minute": "14:01.6",
       "half": 1,
       "timeSeconds": 2.0,
@@ -2187,10 +2187,10 @@
     {
       "id": "bur-ars-20150411-h1-1673",
       "videoId": "bur-ars-20150411-h1-1673",
-      "video": "/demo/video-h1-1673-annotated.mp4",
+      "video": "/demo/video-h1-1673-annotated-v2.mp4",
       "match": "2015-04-11 - 19-30 Burnley 0 - 1 Arsenal",
       "canonicalImage": "/demo/canonical-h1-1673.png",
-      "canonicalVideo": "/demo/canonical-h1-1673.mp4",
+      "canonicalVideo": "/demo/canonical-h1-1673-v2.mp4",
       "minute": "27:54.0",
       "half": 1,
       "timeSeconds": 1.0,
