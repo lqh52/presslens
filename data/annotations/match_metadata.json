@@ -1,0 +1,35 @@
+{
+  "match": "Burnley vs Arsenal",
+  "competition": "Premier League",
+  "date": "2015-04-11",
+  "broadcast_offset_seconds": 0,
+  "team_assignment": {
+    "Arsenal": {
+      "canonical_cluster": "left",
+      "kit": "yellow/navy"
+    },
+    "Burnley": {
+      "canonical_cluster": "right",
+      "kit": "claret/light blue"
+    },
+    "rule": "TrackLab track-level appearance cluster mapped by robust median Lab shirt chroma; only decisive full-track colour outliers are corrected"
+  },
+  "halves": {
+    "1": {
+      "source_video": "1_224p.mkv",
+      "attacking_direction": {
+        "Arsenal": {"raw": -1, "label": "right_to_left"},
+        "Burnley": {"raw": 1, "label": "left_to_right"}
+      }
+    },
+    "2": {
+      "source_video": "2_224p.mkv",
+      "attacking_direction": {
+        "Arsenal": {"raw": 1, "label": "left_to_right"},
+        "Burnley": {"raw": -1, "label": "right_to_left"}
+      }
+    }
+  },
+  "direction_basis": "fixed match-half metadata with directions reversed at half-time",
+  "semantic_label_status": "research-derived"
+}

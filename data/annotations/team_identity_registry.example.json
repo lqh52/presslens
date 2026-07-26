@@ -1,0 +1,39 @@
+{
+  "$schema": "./team_identity_registry.schema.json",
+  "version": 1,
+  "matches": {
+    "england_epl/2016-2017/2016-09-24 - 19-30 Arsenal 3 - 0 Chelsea": {
+      "display_name": "Arsenal vs Chelsea",
+      "soccernet_split": "train",
+      "clubs": ["Arsenal", "Chelsea"],
+      "mapping_status": "unreviewed",
+      "cluster_to_club": {
+        "0": null,
+        "1": null
+      },
+      "notes": "Keep Team A/Team B and derive clip-local KMeans clusters from TrackLab's spatial team side until club identity is reviewed."
+    },
+    "england_epl/2016-2017/2016-09-17 - 17-00 Hull City 1 - 4 Arsenal": {
+      "display_name": "Hull City vs Arsenal",
+      "soccernet_split": "train",
+      "clubs": ["Hull City", "Arsenal"],
+      "mapping_status": "unreviewed",
+      "cluster_to_club": {
+        "0": null,
+        "1": null
+      },
+      "notes": "Keep Team A/Team B and derive clip-local KMeans clusters from TrackLab's spatial team side until club identity is reviewed."
+    },
+    "england_epl/2015-2016/2015-09-26 - 17-00 Leicester 2 - 5 Arsenal": {
+      "display_name": "Leicester vs Arsenal",
+      "soccernet_split": "valid",
+      "clubs": ["Leicester", "Arsenal"],
+      "mapping_status": "unreviewed",
+      "cluster_to_club": {
+        "0": null,
+        "1": null
+      },
+      "notes": "Keep Team A/Team B and derive clip-local KMeans clusters from TrackLab's spatial team side until club identity is reviewed."
+    }
+  }
+}

@@ -1,0 +1,2352 @@
+{
+  "name": "Tactical retrieval.",
+  "source": "Local SoccerNet research video",
+  "count": 8,
+  "videoCount": 8,
+  "matchCount": 4,
+  "reviewStatus": "expert_accepted",
+  "videos": [
+    {
+      "id": "lei-ars-20150926-h1-0093",
+      "half": 1,
+      "startSeconds": 2455.0,
+      "path": "/demo/video-lei-ars-20150926-h1-0093-annotated.mp4"
+    },
+    {
+      "id": "hul-ars-20160917-h1-0009",
+      "half": 1,
+      "startSeconds": 205.0,
+      "path": "/demo/video-hul-ars-20160917-h1-0009-annotated.mp4"
+    },
+    {
+      "id": "ars-che-20160924-h2-0058",
+      "half": 2,
+      "startSeconds": 1645.0,
+      "path": "/demo/video-ars-che-20160924-h2-0058-annotated.mp4"
+    },
+    {
+      "id": "ars-che-20160924-h2-0067",
+      "half": 2,
+      "startSeconds": 1885.0,
+      "path": "/demo/video-ars-che-20160924-h2-0067-annotated.mp4"
+    },
+    {
+      "id": "bur-ars-20150411-h1-0128",
+      "half": 1,
+      "startSeconds": 128,
+      "path": "/demo/video-h1-128-annotated.mp4"
+    },
+    {
+      "id": "bur-ars-20150411-h1-0203",
+      "half": 1,
+      "startSeconds": 203,
+      "path": "/demo/video-h1-203-annotated.mp4"
+    },
+    {
+      "id": "bur-ars-20150411-h1-0833",
+      "half": 1,
+      "startSeconds": 833,
+      "path": "/demo/video-h1-833-annotated.mp4"
+    },
+    {
+      "id": "bur-ars-20150411-h1-1673",
+      "half": 1,
+      "startSeconds": 1673,
+      "path": "/demo/video-h1-1673-annotated.mp4"
+    }
+  ],
+  "clips": [
+    {
+      "id": "lei-ars-20150926-h1-0093",
+      "videoId": "lei-ars-20150926-h1-0093",
+      "video": "/demo/video-lei-ars-20150926-h1-0093-annotated.mp4",
+      "match": "2015-09-26 - 17-00 Leicester 2 - 5 Arsenal",
+      "canonicalImage": "/demo/canonical-lei-ars-20150926-h1-0093.png",
+      "canonicalVideo": "/demo/canonical-lei-ars-20150926-h1-0093.mp4",
+      "minute": "41:00.4",
+      "half": 1,
+      "timeSeconds": 2.96,
+      "frame": 134,
+      "situation": "high_press",
+      "title": "High press",
+      "confidence": 78.3,
+      "majorityFrames": 18,
+      "validFrames": 21,
+      "orientationValidated": true,
+      "reviewDecision": "include",
+      "labelSource": "expert_review",
+      "phase": "expert_accepted",
+      "visibleNodes": 10,
+      "possessionConfident": true,
+      "ballConfidence": 17.3,
+      "possessionClub": "Team A",
+      "pressingClub": "Team B",
+      "attackDirection": "left_to_right",
+      "directionSource": "direction_registry_match_half_override",
+      "directionConfidence": 80.8,
+      "teamIdentityMap": {
+        "left": "Team A",
+        "right": "Team B"
+      },
+      "ballHolderDistanceM": 0.613,
+      "description": "Several defenders compress the ball area during the build-up",
+      "evidence": [
+        "Frame agreement \u00b7 18 / 21 reliable frames agree",
+        "Direction confidence 80.8%",
+        "5 defenders within 12 m",
+        "Geometric rule: high press"
+      ],
+      "tags": [
+        "dense pressure",
+        "defensive-third build-up",
+        "players converging on ball",
+        "reviewed",
+        "real video"
+      ],
+      "probabilities": {
+        "unstructured": 0.0,
+        "central_screen": 0.012394,
+        "trap_left": 7.1e-05,
+        "trap_right": 1.7e-05,
+        "high_press": 0.987518
+      },
+      "weakLabel": "high_press",
+      "weakRule": "defensive_third+dense_active_pressure",
+      "thumbnail": "/demo/frames/lei-ars-20150926-h1-0093-frame-0134.jpg",
+      "players": [
+        {
+          "x": 38.872,
+          "y": 42.183,
+          "dx": 8.435,
+          "dy": 1.778,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 36.526,
+          "y": 12.863,
+          "dx": 4.72,
+          "dy": 5.593,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 33.745,
+          "y": 22.926,
+          "dx": 3.95,
+          "dy": -3.137,
+          "team": "build",
+          "role": "player",
+          "controlsBall": true
+        },
+        {
+          "x": 30.787,
+          "y": 23.715,
+          "dx": 4.55,
+          "dy": 9.154,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 31.844,
+          "y": 17.807,
+          "dx": 6.767,
+          "dy": 11.69,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 38.465,
+          "y": 24.981,
+          "dx": 4.333,
+          "dy": 4.291,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 40.15,
+          "y": 33.823,
+          "dx": 7.557,
+          "dy": 8.444,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 33.02,
+          "y": 27.555,
+          "dx": 9.07,
+          "dy": 8.215,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 43.785,
+          "y": 20.394,
+          "dx": 4.317,
+          "dy": -0.57,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        }
+      ],
+      "ball": {
+        "x": 34.3,
+        "y": 23.116
+      },
+      "overlayTrackFilter": {
+        "mode": "role_pitch_duration_and_expert_ignore",
+        "model_path": null,
+        "model_threshold": null,
+        "exclude_goalkeepers": true,
+        "minimum_detections": 3,
+        "excluded_track_ids": [
+          9,
+          21,
+          22,
+          24,
+          28,
+          34,
+          37,
+          38,
+          41,
+          43,
+          45
+        ],
+        "reasons": {
+          "role_detection_nonplayer": [
+            28
+          ],
+          "too_few_detections": [
+            21,
+            24,
+            34,
+            37,
+            38,
+            41,
+            45
+          ],
+          "outside_pitch": [
+            9,
+            22,
+            43
+          ]
+        },
+        "ignore_model_scores": {},
+        "appearance": {
+          "method": "full_lab_torso_track_outlier",
+          "tracks_with_colour": 43,
+          "prototypes_lab": {
+            "0": [
+              150.75,
+              111.5,
+              160.25
+            ],
+            "1": [
+              109.0,
+              123.0,
+              134.0
+            ]
+          },
+          "thresholds": {
+            "0": 67.353,
+            "1": 112.224
+          },
+          "distances": {
+            "1": {
+              "cluster": 1,
+              "own_distance": 23.0,
+              "nearest_distance": 23.0
+            },
+            "2": {
+              "cluster": 1,
+              "own_distance": 63.127,
+              "nearest_distance": 63.127
+            },
+            "3": {
+              "cluster": 1,
+              "own_distance": 10.689,
+              "nearest_distance": 10.689
+            },
+            "4": {
+              "cluster": 0,
+              "own_distance": 39.825,
+              "nearest_distance": 19.699
+            },
+            "5": {
+              "cluster": 1,
+              "own_distance": 11.18,
+              "nearest_distance": 11.18
+            },
+            "6": {
+              "cluster": 1,
+              "own_distance": 14.874,
+              "nearest_distance": 14.874
+            },
+            "7": {
+              "cluster": 1,
+              "own_distance": 37.855,
+              "nearest_distance": 37.855
+            },
+            "8": {
+              "cluster": 1,
+              "own_distance": 7.348,
+              "nearest_distance": 7.348
+            },
+            "9": {
+              "cluster": 1,
+              "own_distance": 15.524,
+              "nearest_distance": 15.524
+            },
+            "10": {
+              "cluster": 0,
+              "own_distance": 24.184,
+              "nearest_distance": 24.184
+            },
+            "11": {
+              "cluster": 0,
+              "own_distance": 12.614,
+              "nearest_distance": 12.614
+            },
+            "12": {
+              "cluster": 1,
+              "own_distance": 10.198,
+              "nearest_distance": 10.198
+            },
+            "13": {
+              "cluster": 0,
+              "own_distance": 13.053,
+              "nearest_distance": 13.053
+            },
+            "14": {
+              "cluster": 1,
+              "own_distance": 32.845,
+              "nearest_distance": 32.845
+            },
+            "15": {
+              "cluster": 0,
+              "own_distance": 64.291,
+              "nearest_distance": 27.037
+            },
+            "16": {
+              "cluster": 1,
+              "own_distance": 28.862,
+              "nearest_distance": 28.862
+            },
+            "17": {
+              "cluster": 0,
+              "own_distance": 14.522,
+              "nearest_distance": 14.522
+            },
+            "18": {
+              "cluster": 0,
+              "own_distance": 38.78,
+              "nearest_distance": 29.223
+            },
+            "19": {
+              "cluster": 0,
+              "own_distance": 10.41,
+              "nearest_distance": 10.41
+            },
+            "20": {
+              "cluster": 0,
+              "own_distance": 29.717,
+              "nearest_distance": 29.717
+            },
+            "21": {
+              "cluster": 1,
+              "own_distance": 45.864,
+              "nearest_distance": 45.864
+            },
+            "22": {
+              "cluster": 1,
+              "own_distance": 45.033,
+              "nearest_distance": 45.033
+            },
+            "23": {
+              "cluster": 1,
+              "own_distance": 46.23,
+              "nearest_distance": 16.443
+            },
+            "24": {
+              "cluster": 0,
+              "own_distance": 13.346,
+              "nearest_distance": 13.346
+            },
+            "25": {
+              "cluster": 0,
+              "own_distance": 3.102,
+              "nearest_distance": 3.102
+            },
+            "26": {
+              "cluster": 0,
+              "own_distance": 42.631,
+              "nearest_distance": 16.186
+            },
+            "27": {
+              "cluster": 0,
+              "own_distance": 13.262,
+              "nearest_distance": 13.262
+            },
+            "28": {
+              "cluster": 0,
+              "own_distance": 9.267,
+              "nearest_distance": 9.267
+            },
+            "29": {
+              "cluster": 1,
+              "own_distance": 41.791,
+              "nearest_distance": 15.268
+            },
+            "30": {
+              "cluster": 0,
+              "own_distance": 2.937,
+              "nearest_distance": 2.937
+            },
+            "31": {
+              "cluster": 0,
+              "own_distance": 61.914,
+              "nearest_distance": 20.767
+            },
+            "32": {
+              "cluster": 0,
+              "own_distance": 3.142,
+              "nearest_distance": 3.142
+            },
+            "33": {
+              "cluster": 0,
+              "own_distance": 4.138,
+              "nearest_distance": 4.138
+            },
+            "34": {
+              "cluster": 0,
+              "own_distance": 14.129,
+              "nearest_distance": 14.129
+            },
+            "35": {
+              "cluster": 0,
+              "own_distance": 9.52,
+              "nearest_distance": 9.52
+            },
+            "36": {
+              "cluster": 0,
+              "own_distance": 4.783,
+              "nearest_distance": 4.783
+            },
+            "37": {
+              "cluster": 0,
+              "own_distance": 3.142,
+              "nearest_distance": 3.142
+            },
+            "39": {
+              "cluster": 1,
+              "own_distance": 68.308,
+              "nearest_distance": 18.785
+            },
+            "40": {
+              "cluster": 0,
+              "own_distance": 7.272,
+              "nearest_distance": 7.272
+            },
+            "42": {
+              "cluster": 0,
+              "own_distance": 3.142,
+              "nearest_distance": 3.142
+            },
+            "43": {
+              "cluster": 0,
+              "own_distance": 39.817,
+              "nearest_distance": 26.907
+            },
+            "44": {
+              "cluster": 0,
+              "own_distance": 5.948,
+              "nearest_distance": 5.948
+            },
+            "45": {
+              "cluster": 1,
+              "own_distance": 44.13,
+              "nearest_distance": 13.843
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "hul-ars-20160917-h1-0009",
+      "videoId": "hul-ars-20160917-h1-0009",
+      "video": "/demo/video-hul-ars-20160917-h1-0009-annotated.mp4",
+      "match": "2016-09-17 - 17-00 Hull City 1 - 4 Arsenal",
+      "canonicalImage": "/demo/canonical-hul-ars-20160917-h1-0009.png",
+      "canonicalVideo": "/demo/canonical-hul-ars-20160917-h1-0009.mp4",
+      "minute": "03:27.8",
+      "half": 1,
+      "timeSeconds": 0.84,
+      "frame": 69,
+      "situation": "high_press",
+      "title": "High press",
+      "confidence": 98.5,
+      "majorityFrames": 30,
+      "validFrames": 30,
+      "orientationValidated": true,
+      "reviewDecision": "include",
+      "labelSource": "expert_review",
+      "phase": "expert_accepted",
+      "visibleNodes": 13,
+      "possessionConfident": true,
+      "ballConfidence": 7.4,
+      "possessionClub": "Team B",
+      "pressingClub": "Team A",
+      "attackDirection": "right_to_left",
+      "directionSource": "direction_registry_match_half_override",
+      "directionConfidence": 79.9,
+      "teamIdentityMap": {
+        "left": "Team A",
+        "right": "Team B"
+      },
+      "ballHolderDistanceM": 1.225,
+      "description": "Several defenders compress the ball area during the build-up",
+      "evidence": [
+        "Frame agreement \u00b7 30 / 30 reliable frames agree",
+        "Direction confidence 79.9%",
+        "5 defenders within 12 m",
+        "Geometric rule: high press"
+      ],
+      "tags": [
+        "dense pressure",
+        "defensive-third build-up",
+        "players converging on ball",
+        "reviewed",
+        "real video"
+      ],
+      "probabilities": {
+        "unstructured": 0.0,
+        "central_screen": 0.001634,
+        "trap_left": 0.0,
+        "trap_right": 0.002618,
+        "high_press": 0.995748
+      },
+      "weakLabel": "high_press",
+      "weakRule": "defensive_third+dense_active_pressure",
+      "thumbnail": "/demo/frames/hul-ars-20160917-h1-0009-frame-0069.jpg",
+      "players": [
+        {
+          "x": 29.2,
+          "y": 25.056,
+          "dx": -0.926,
+          "dy": 8.822,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 15.877,
+          "y": 51.836,
+          "dx": 3.503,
+          "dy": -2.875,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 18.287,
+          "y": 40.48,
+          "dx": 0.979,
+          "dy": 6.855,
+          "team": "build",
+          "role": "player",
+          "controlsBall": true
+        },
+        {
+          "x": 22.125,
+          "y": 48.371,
+          "dx": 1.771,
+          "dy": -1.144,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 15.729,
+          "y": 33.653,
+          "dx": 1.603,
+          "dy": 5.272,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 18.233,
+          "y": 30.911,
+          "dx": 4.52,
+          "dy": 0.693,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 26.912,
+          "y": 20.424,
+          "dx": -2.293,
+          "dy": 10.283,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 17.945,
+          "y": 37.384,
+          "dx": 1.037,
+          "dy": 6.739,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 22.875,
+          "y": 48.17,
+          "dx": 3.67,
+          "dy": -1.166,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 13.643,
+          "y": 53.188,
+          "dx": 1.159,
+          "dy": 0.199,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 14.09,
+          "y": 42.155,
+          "dx": 1.778,
+          "dy": 1.943,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 28.955,
+          "y": 42.984,
+          "dx": 0.345,
+          "dy": -4.369,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        }
+      ],
+      "ball": {
+        "x": 18.264,
+        "y": 41.704
+      },
+      "overlayTrackFilter": {
+        "mode": "role_pitch_duration_and_expert_ignore",
+        "model_path": null,
+        "model_threshold": null,
+        "exclude_goalkeepers": true,
+        "minimum_detections": 3,
+        "excluded_track_ids": [
+          17,
+          19,
+          21,
+          22,
+          23,
+          30,
+          31,
+          32,
+          35,
+          36,
+          37
+        ],
+        "reasons": {
+          "role_detection_nonplayer": [
+            19
+          ],
+          "too_few_detections": [
+            21,
+            23,
+            30,
+            31,
+            36,
+            37
+          ],
+          "outside_pitch": [
+            22,
+            32,
+            35
+          ],
+          "appearance_outlier": [
+            17
+          ]
+        },
+        "ignore_model_scores": {},
+        "appearance": {
+          "method": "full_lab_torso_track_outlier",
+          "tracks_with_colour": 36,
+          "prototypes_lab": {
+            "0": [
+              125.125,
+              122.5,
+              153.0
+            ],
+            "1": [
+              131.25,
+              127.0,
+              148.0
+            ]
+          },
+          "thresholds": {
+            "0": 19.528,
+            "1": 35.426
+          },
+          "distances": {
+            "1": {
+              "cluster": 1,
+              "own_distance": 1.601,
+              "nearest_distance": 1.601
+            },
+            "2": {
+              "cluster": 1,
+              "own_distance": 10.152,
+              "nearest_distance": 10.152
+            },
+            "3": {
+              "cluster": 0,
+              "own_distance": 9.862,
+              "nearest_distance": 9.862
+            },
+            "4": {
+              "cluster": 1,
+              "own_distance": 4.451,
+              "nearest_distance": 4.451
+            },
+            "5": {
+              "cluster": 0,
+              "own_distance": 10.69,
+              "nearest_distance": 9.169
+            },
+            "6": {
+              "cluster": 1,
+              "own_distance": 16.426,
+              "nearest_distance": 16.426
+            },
+            "7": {
+              "cluster": 0,
+              "own_distance": 5.762,
+              "nearest_distance": 5.762
+            },
+            "8": {
+              "cluster": 0,
+              "own_distance": 4.712,
+              "nearest_distance": 4.712
+            },
+            "9": {
+              "cluster": 1,
+              "own_distance": 3.092,
+              "nearest_distance": 3.092
+            },
+            "10": {
+              "cluster": 0,
+              "own_distance": 4.502,
+              "nearest_distance": 4.502
+            },
+            "11": {
+              "cluster": 1,
+              "own_distance": 10.796,
+              "nearest_distance": 10.796
+            },
+            "12": {
+              "cluster": 0,
+              "own_distance": 18.159,
+              "nearest_distance": 18.159
+            },
+            "13": {
+              "cluster": 0,
+              "own_distance": 6.404,
+              "nearest_distance": 6.404
+            },
+            "14": {
+              "cluster": 0,
+              "own_distance": 4.638,
+              "nearest_distance": 4.638
+            },
+            "15": {
+              "cluster": 0,
+              "own_distance": 5.002,
+              "nearest_distance": 5.002
+            },
+            "16": {
+              "cluster": 1,
+              "own_distance": 4.535,
+              "nearest_distance": 4.535
+            },
+            "17": {
+              "cluster": 0,
+              "own_distance": 25.11,
+              "nearest_distance": 23.25
+            },
+            "18": {
+              "cluster": 1,
+              "own_distance": 2.839,
+              "nearest_distance": 2.839
+            },
+            "19": {
+              "cluster": 1,
+              "own_distance": 17.473,
+              "nearest_distance": 13.533
+            },
+            "20": {
+              "cluster": 1,
+              "own_distance": 6.047,
+              "nearest_distance": 6.047
+            },
+            "22": {
+              "cluster": 0,
+              "own_distance": 7.509,
+              "nearest_distance": 7.509
+            },
+            "23": {
+              "cluster": 1,
+              "own_distance": 7.163,
+              "nearest_distance": 7.163
+            },
+            "24": {
+              "cluster": 1,
+              "own_distance": 5.056,
+              "nearest_distance": 5.056
+            },
+            "25": {
+              "cluster": 1,
+              "own_distance": 3.75,
+              "nearest_distance": 3.75
+            },
+            "26": {
+              "cluster": 0,
+              "own_distance": 3.466,
+              "nearest_distance": 3.466
+            },
+            "27": {
+              "cluster": 0,
+              "own_distance": 6.266,
+              "nearest_distance": 6.266
+            },
+            "28": {
+              "cluster": 0,
+              "own_distance": 9.862,
+              "nearest_distance": 3.849
+            },
+            "29": {
+              "cluster": 1,
+              "own_distance": 23.782,
+              "nearest_distance": 20.713
+            },
+            "30": {
+              "cluster": 1,
+              "own_distance": 18.957,
+              "nearest_distance": 15.47
+            },
+            "32": {
+              "cluster": 0,
+              "own_distance": 8.931,
+              "nearest_distance": 8.931
+            },
+            "33": {
+              "cluster": 0,
+              "own_distance": 7.195,
+              "nearest_distance": 7.195
+            },
+            "34": {
+              "cluster": 1,
+              "own_distance": 12.789,
+              "nearest_distance": 12.789
+            },
+            "35": {
+              "cluster": 1,
+              "own_distance": 15.234,
+              "nearest_distance": 15.234
+            },
+            "36": {
+              "cluster": 1,
+              "own_distance": 6.787,
+              "nearest_distance": 6.787
+            },
+            "38": {
+              "cluster": 1,
+              "own_distance": 10.078,
+              "nearest_distance": 2.24
+            },
+            "39": {
+              "cluster": 1,
+              "own_distance": 19.939,
+              "nearest_distance": 16.032
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ars-che-20160924-h2-0058",
+      "videoId": "ars-che-20160924-h2-0058",
+      "video": "/demo/video-ars-che-20160924-h2-0058-annotated.mp4",
+      "match": "2016-09-24 - 19-30 Arsenal 3 - 0 Chelsea",
+      "canonicalImage": "/demo/canonical-ars-che-20160924-h2-0058.png",
+      "canonicalVideo": "/demo/canonical-ars-che-20160924-h2-0058.mp4",
+      "minute": "72:29.6",
+      "half": 2,
+      "timeSeconds": 2.2,
+      "frame": 115,
+      "situation": "high_press",
+      "title": "High press",
+      "confidence": 84.3,
+      "majorityFrames": 30,
+      "validFrames": 32,
+      "orientationValidated": true,
+      "reviewDecision": "include",
+      "labelSource": "expert_review",
+      "phase": "expert_accepted",
+      "visibleNodes": 10,
+      "possessionConfident": true,
+      "ballConfidence": 15.7,
+      "possessionClub": "Team A",
+      "pressingClub": "Team B",
+      "attackDirection": "left_to_right",
+      "directionSource": "direction_registry_match_half_override",
+      "directionConfidence": 100.0,
+      "teamIdentityMap": {
+        "left": "Team A",
+        "right": "Team B"
+      },
+      "ballHolderDistanceM": 1.017,
+      "description": "Several defenders compress the ball area during the build-up",
+      "evidence": [
+        "Frame agreement \u00b7 30 / 32 reliable frames agree",
+        "Direction confidence 100.0%",
+        "2 defenders within 12 m",
+        "Geometric rule: high press"
+      ],
+      "tags": [
+        "dense pressure",
+        "defensive-third build-up",
+        "players converging on ball",
+        "reviewed",
+        "real video"
+      ],
+      "probabilities": {
+        "unstructured": 1.1e-05,
+        "central_screen": 0.011037,
+        "trap_left": 1e-06,
+        "trap_right": 0.022095,
+        "high_press": 0.966856
+      },
+      "weakLabel": "high_press",
+      "weakRule": "defensive_third+dense_active_pressure",
+      "thumbnail": "/demo/frames/ars-che-20160924-h2-0058-frame-0115.jpg",
+      "players": [
+        {
+          "x": 4.88,
+          "y": 45.419,
+          "dx": 0.289,
+          "dy": -1.038,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 2.35,
+          "y": 39.555,
+          "dx": -0.064,
+          "dy": -2.814,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 0.177,
+          "y": 54.958,
+          "dx": -2.257,
+          "dy": 0.447,
+          "team": "build",
+          "role": "player",
+          "controlsBall": true
+        },
+        {
+          "x": 9.622,
+          "y": 56.58,
+          "dx": 0.076,
+          "dy": 2.342,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 10.521,
+          "y": 62.552,
+          "dx": 0.029,
+          "dy": 9.436,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 1.168,
+          "y": 49.362,
+          "dx": 4.03,
+          "dy": 5.605,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 7.816,
+          "y": 43.507,
+          "dx": 0.885,
+          "dy": -3.541,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 3.267,
+          "y": 37.721,
+          "dx": -0.525,
+          "dy": -3.835,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 10.548,
+          "y": 63.709,
+          "dx": -0.231,
+          "dy": 9.484,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        }
+      ],
+      "ball": {
+        "x": 0.739,
+        "y": 54.13
+      },
+      "overlayTrackFilter": {
+        "mode": "role_pitch_duration_and_expert_ignore",
+        "model_path": null,
+        "model_threshold": null,
+        "exclude_goalkeepers": true,
+        "minimum_detections": 3,
+        "excluded_track_ids": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          9,
+          10,
+          12,
+          13,
+          18,
+          19,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          30,
+          32,
+          33,
+          35,
+          36,
+          39,
+          40,
+          46,
+          48,
+          49,
+          52,
+          53,
+          54,
+          56,
+          57,
+          58
+        ],
+        "reasons": {
+          "goalkeeper_role": [
+            32
+          ],
+          "too_few_detections": [
+            27,
+            30,
+            33,
+            35,
+            36,
+            39,
+            40,
+            46,
+            48,
+            49,
+            52,
+            53,
+            54,
+            56,
+            57,
+            58
+          ],
+          "outside_pitch": [
+            4,
+            6,
+            7,
+            9,
+            10,
+            12,
+            13,
+            18,
+            19,
+            22,
+            23,
+            24,
+            26
+          ],
+          "sideline_nonparticipant": [
+            5,
+            25
+          ],
+          "appearance_outlier": [
+            3
+          ]
+        },
+        "ignore_model_scores": {},
+        "appearance": {
+          "method": "full_lab_torso_track_outlier",
+          "tracks_with_colour": 49,
+          "prototypes_lab": {
+            "0": [
+              117.75,
+              124.75,
+              155.5
+            ],
+            "1": [
+              109.5,
+              130.0,
+              126.0
+            ]
+          },
+          "thresholds": {
+            "0": 45.446,
+            "1": 84.644
+          },
+          "distances": {
+            "1": {
+              "cluster": 0,
+              "own_distance": 24.287,
+              "nearest_distance": 24.287
+            },
+            "2": {
+              "cluster": 1,
+              "own_distance": 33.425,
+              "nearest_distance": 33.425
+            },
+            "3": {
+              "cluster": 0,
+              "own_distance": 67.929,
+              "nearest_distance": 67.929
+            },
+            "4": {
+              "cluster": 0,
+              "own_distance": 26.521,
+              "nearest_distance": 26.521
+            },
+            "5": {
+              "cluster": 0,
+              "own_distance": 23.3,
+              "nearest_distance": 23.3
+            },
+            "6": {
+              "cluster": 1,
+              "own_distance": 5.42,
+              "nearest_distance": 5.42
+            },
+            "7": {
+              "cluster": 0,
+              "own_distance": 15.902,
+              "nearest_distance": 15.902
+            },
+            "8": {
+              "cluster": 1,
+              "own_distance": 24.602,
+              "nearest_distance": 24.602
+            },
+            "9": {
+              "cluster": 1,
+              "own_distance": 6.344,
+              "nearest_distance": 6.344
+            },
+            "10": {
+              "cluster": 1,
+              "own_distance": 4.61,
+              "nearest_distance": 4.61
+            },
+            "12": {
+              "cluster": 1,
+              "own_distance": 79.833,
+              "nearest_distance": 79.833
+            },
+            "13": {
+              "cluster": 0,
+              "own_distance": 9.843,
+              "nearest_distance": 9.843
+            },
+            "14": {
+              "cluster": 1,
+              "own_distance": 18.173,
+              "nearest_distance": 18.173
+            },
+            "15": {
+              "cluster": 0,
+              "own_distance": 13.12,
+              "nearest_distance": 13.12
+            },
+            "16": {
+              "cluster": 1,
+              "own_distance": 30.054,
+              "nearest_distance": 14.226
+            },
+            "18": {
+              "cluster": 1,
+              "own_distance": 9.487,
+              "nearest_distance": 9.487
+            },
+            "19": {
+              "cluster": 1,
+              "own_distance": 6.964,
+              "nearest_distance": 6.964
+            },
+            "20": {
+              "cluster": 1,
+              "own_distance": 16.047,
+              "nearest_distance": 16.047
+            },
+            "21": {
+              "cluster": 0,
+              "own_distance": 16.908,
+              "nearest_distance": 16.908
+            },
+            "22": {
+              "cluster": 1,
+              "own_distance": 38.108,
+              "nearest_distance": 38.108
+            },
+            "23": {
+              "cluster": 0,
+              "own_distance": 17.66,
+              "nearest_distance": 17.66
+            },
+            "24": {
+              "cluster": 1,
+              "own_distance": 5.105,
+              "nearest_distance": 5.105
+            },
+            "25": {
+              "cluster": 0,
+              "own_distance": 15.933,
+              "nearest_distance": 15.933
+            },
+            "26": {
+              "cluster": 1,
+              "own_distance": 33.589,
+              "nearest_distance": 13.374
+            },
+            "28": {
+              "cluster": 1,
+              "own_distance": 19.906,
+              "nearest_distance": 15.029
+            },
+            "29": {
+              "cluster": 0,
+              "own_distance": 2.424,
+              "nearest_distance": 2.424
+            },
+            "31": {
+              "cluster": 0,
+              "own_distance": 16.136,
+              "nearest_distance": 16.136
+            },
+            "33": {
+              "cluster": 0,
+              "own_distance": 8.325,
+              "nearest_distance": 8.325
+            },
+            "34": {
+              "cluster": 0,
+              "own_distance": 15.211,
+              "nearest_distance": 15.211
+            },
+            "35": {
+              "cluster": 1,
+              "own_distance": 33.35,
+              "nearest_distance": 10.892
+            },
+            "36": {
+              "cluster": 0,
+              "own_distance": 16.834,
+              "nearest_distance": 16.834
+            },
+            "37": {
+              "cluster": 1,
+              "own_distance": 13.982,
+              "nearest_distance": 13.982
+            },
+            "38": {
+              "cluster": 1,
+              "own_distance": 30.61,
+              "nearest_distance": 10.601
+            },
+            "39": {
+              "cluster": 0,
+              "own_distance": 16.481,
+              "nearest_distance": 16.481
+            },
+            "41": {
+              "cluster": 1,
+              "own_distance": 7.826,
+              "nearest_distance": 7.826
+            },
+            "42": {
+              "cluster": 0,
+              "own_distance": 4.677,
+              "nearest_distance": 4.677
+            },
+            "43": {
+              "cluster": 1,
+              "own_distance": 9.069,
+              "nearest_distance": 9.069
+            },
+            "44": {
+              "cluster": 1,
+              "own_distance": 27.295,
+              "nearest_distance": 12.585
+            },
+            "45": {
+              "cluster": 0,
+              "own_distance": 6.81,
+              "nearest_distance": 6.81
+            },
+            "47": {
+              "cluster": 0,
+              "own_distance": 10.29,
+              "nearest_distance": 10.29
+            },
+            "48": {
+              "cluster": 1,
+              "own_distance": 18.936,
+              "nearest_distance": 16.634
+            },
+            "49": {
+              "cluster": 1,
+              "own_distance": 30.907,
+              "nearest_distance": 10.386
+            },
+            "50": {
+              "cluster": 1,
+              "own_distance": 12.186,
+              "nearest_distance": 12.186
+            },
+            "51": {
+              "cluster": 1,
+              "own_distance": 15.141,
+              "nearest_distance": 15.141
+            },
+            "52": {
+              "cluster": 0,
+              "own_distance": 6.393,
+              "nearest_distance": 6.393
+            },
+            "54": {
+              "cluster": 0,
+              "own_distance": 20.208,
+              "nearest_distance": 20.208
+            },
+            "55": {
+              "cluster": 1,
+              "own_distance": 11.217,
+              "nearest_distance": 11.217
+            },
+            "56": {
+              "cluster": 0,
+              "own_distance": 16.974,
+              "nearest_distance": 16.974
+            },
+            "57": {
+              "cluster": 1,
+              "own_distance": 35.672,
+              "nearest_distance": 15.64
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ars-che-20160924-h2-0067",
+      "videoId": "ars-che-20160924-h2-0067",
+      "video": "/demo/video-ars-che-20160924-h2-0067-annotated.mp4",
+      "match": "2016-09-24 - 19-30 Arsenal 3 - 0 Chelsea",
+      "canonicalImage": "/demo/canonical-ars-che-20160924-h2-0067.png",
+      "canonicalVideo": "/demo/canonical-ars-che-20160924-h2-0067.mp4",
+      "minute": "76:29.0",
+      "half": 2,
+      "timeSeconds": 2.56,
+      "frame": 100,
+      "situation": "high_press",
+      "title": "High press",
+      "confidence": 65.4,
+      "majorityFrames": 4,
+      "validFrames": 5,
+      "orientationValidated": true,
+      "reviewDecision": "include",
+      "labelSource": "expert_review",
+      "phase": "expert_accepted",
+      "visibleNodes": 10,
+      "possessionConfident": true,
+      "ballConfidence": 18.2,
+      "possessionClub": "Team A",
+      "pressingClub": "Team B",
+      "attackDirection": "left_to_right",
+      "directionSource": "direction_registry_match_half_override",
+      "directionConfidence": 100.0,
+      "teamIdentityMap": {
+        "left": "Team A",
+        "right": "Team B"
+      },
+      "ballHolderDistanceM": 1.708,
+      "description": "Several defenders compress the ball area during the build-up",
+      "evidence": [
+        "Frame agreement \u00b7 4 / 5 reliable frames agree",
+        "Direction confidence 100.0%",
+        "2 defenders within 12 m",
+        "Geometric rule: high press"
+      ],
+      "tags": [
+        "dense pressure",
+        "defensive-third build-up",
+        "players converging on ball",
+        "reviewed",
+        "real video"
+      ],
+      "probabilities": {
+        "unstructured": 1.2e-05,
+        "central_screen": 0.120687,
+        "trap_left": 0.001093,
+        "trap_right": 0.000367,
+        "high_press": 0.877842
+      },
+      "weakLabel": "high_press",
+      "weakRule": "defensive_third+dense_active_pressure",
+      "thumbnail": "/demo/frames/ars-che-20160924-h2-0067-frame-0100.jpg",
+      "players": [
+        {
+          "x": 29.254,
+          "y": 27.676,
+          "dx": 7.46,
+          "dy": 13.6,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 28.193,
+          "y": 20.173,
+          "dx": 20.0,
+          "dy": 13.6,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 40.049,
+          "y": 28.268,
+          "dx": 16.15,
+          "dy": 13.6,
+          "team": "build",
+          "role": "player",
+          "controlsBall": true
+        },
+        {
+          "x": 37.568,
+          "y": 15.737,
+          "dx": 20.0,
+          "dy": 13.6,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 29.991,
+          "y": 11.27,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 31.61,
+          "y": 15.805,
+          "dx": 20.0,
+          "dy": 13.6,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 33.663,
+          "y": 39.261,
+          "dx": 20.0,
+          "dy": 8.742,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 28.718,
+          "y": 26.604,
+          "dx": 14.077,
+          "dy": 13.6,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 33.94,
+          "y": 25.733,
+          "dx": 20.0,
+          "dy": 13.6,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        }
+      ],
+      "ball": {
+        "x": 39.436,
+        "y": 26.687
+      },
+      "overlayTrackFilter": {
+        "mode": "role_pitch_duration_and_expert_ignore",
+        "model_path": null,
+        "model_threshold": null,
+        "exclude_goalkeepers": true,
+        "minimum_detections": 3,
+        "excluded_track_ids": [
+          9,
+          11,
+          16,
+          17,
+          20,
+          21,
+          22,
+          27,
+          28,
+          31,
+          32,
+          34,
+          35,
+          38
+        ],
+        "reasons": {
+          "goalkeeper_role": [
+            32,
+            35
+          ],
+          "role_detection_nonplayer": [
+            22
+          ],
+          "too_few_detections": [
+            11,
+            16,
+            21
+          ],
+          "outside_pitch": [
+            9,
+            17,
+            20,
+            27,
+            28,
+            34,
+            38
+          ],
+          "appearance_outlier": [
+            31
+          ]
+        },
+        "ignore_model_scores": {},
+        "appearance": {
+          "method": "full_lab_torso_track_outlier",
+          "tracks_with_colour": 35,
+          "prototypes_lab": {
+            "0": [
+              120.0,
+              138.0,
+              150.5
+            ],
+            "1": [
+              116.0,
+              125.0,
+              123.0
+            ]
+          },
+          "thresholds": {
+            "0": 50.779,
+            "1": 77.989
+          },
+          "distances": {
+            "1": {
+              "cluster": 0,
+              "own_distance": 18.527,
+              "nearest_distance": 18.527
+            },
+            "2": {
+              "cluster": 0,
+              "own_distance": 10.452,
+              "nearest_distance": 10.452
+            },
+            "3": {
+              "cluster": 1,
+              "own_distance": 33.615,
+              "nearest_distance": 33.615
+            },
+            "4": {
+              "cluster": 1,
+              "own_distance": 10.44,
+              "nearest_distance": 10.44
+            },
+            "6": {
+              "cluster": 0,
+              "own_distance": 8.261,
+              "nearest_distance": 8.261
+            },
+            "7": {
+              "cluster": 0,
+              "own_distance": 9.223,
+              "nearest_distance": 9.223
+            },
+            "8": {
+              "cluster": 1,
+              "own_distance": 10.77,
+              "nearest_distance": 10.77
+            },
+            "9": {
+              "cluster": 1,
+              "own_distance": 11.192,
+              "nearest_distance": 11.192
+            },
+            "10": {
+              "cluster": 1,
+              "own_distance": 6.27,
+              "nearest_distance": 6.27
+            },
+            "11": {
+              "cluster": 1,
+              "own_distance": 31.078,
+              "nearest_distance": 31.078
+            },
+            "12": {
+              "cluster": 0,
+              "own_distance": 6.423,
+              "nearest_distance": 6.423
+            },
+            "13": {
+              "cluster": 0,
+              "own_distance": 8.016,
+              "nearest_distance": 8.016
+            },
+            "14": {
+              "cluster": 0,
+              "own_distance": 13.85,
+              "nearest_distance": 13.85
+            },
+            "15": {
+              "cluster": 0,
+              "own_distance": 26.688,
+              "nearest_distance": 26.688
+            },
+            "16": {
+              "cluster": 0,
+              "own_distance": 25.186,
+              "nearest_distance": 25.186
+            },
+            "17": {
+              "cluster": 1,
+              "own_distance": 40.2,
+              "nearest_distance": 30.484
+            },
+            "18": {
+              "cluster": 1,
+              "own_distance": 11.0,
+              "nearest_distance": 11.0
+            },
+            "19": {
+              "cluster": 1,
+              "own_distance": 11.045,
+              "nearest_distance": 11.045
+            },
+            "20": {
+              "cluster": 1,
+              "own_distance": 75.513,
+              "nearest_distance": 75.513
+            },
+            "22": {
+              "cluster": 0,
+              "own_distance": 27.079,
+              "nearest_distance": 27.079
+            },
+            "23": {
+              "cluster": 0,
+              "own_distance": 4.555,
+              "nearest_distance": 4.555
+            },
+            "24": {
+              "cluster": 0,
+              "own_distance": 7.365,
+              "nearest_distance": 7.365
+            },
+            "25": {
+              "cluster": 1,
+              "own_distance": 11.662,
+              "nearest_distance": 11.662
+            },
+            "26": {
+              "cluster": 1,
+              "own_distance": 28.673,
+              "nearest_distance": 28.673
+            },
+            "27": {
+              "cluster": 1,
+              "own_distance": 73.763,
+              "nearest_distance": 73.763
+            },
+            "28": {
+              "cluster": 0,
+              "own_distance": 38.043,
+              "nearest_distance": 38.043
+            },
+            "29": {
+              "cluster": 0,
+              "own_distance": 5.315,
+              "nearest_distance": 5.315
+            },
+            "30": {
+              "cluster": 1,
+              "own_distance": 20.469,
+              "nearest_distance": 20.378
+            },
+            "31": {
+              "cluster": 0,
+              "own_distance": 74.42,
+              "nearest_distance": 74.42
+            },
+            "33": {
+              "cluster": 0,
+              "own_distance": 14.335,
+              "nearest_distance": 14.335
+            },
+            "34": {
+              "cluster": 1,
+              "own_distance": 29.155,
+              "nearest_distance": 24.336
+            },
+            "36": {
+              "cluster": 1,
+              "own_distance": 20.304,
+              "nearest_distance": 20.304
+            },
+            "37": {
+              "cluster": 0,
+              "own_distance": 31.93,
+              "nearest_distance": 31.93
+            },
+            "38": {
+              "cluster": 1,
+              "own_distance": 45.114,
+              "nearest_distance": 36.271
+            },
+            "40": {
+              "cluster": 0,
+              "own_distance": 5.5,
+              "nearest_distance": 5.5
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "bur-ars-20150411-h1-0128",
+      "videoId": "bur-ars-20150411-h1-0128",
+      "video": "/demo/video-h1-128-annotated.mp4",
+      "match": "2015-04-11 - 19-30 Burnley 0 - 1 Arsenal",
+      "canonicalImage": "/demo/canonical-h1-128.png",
+      "canonicalVideo": "/demo/canonical-h1-128.mp4",
+      "minute": "02:19.5",
+      "half": 1,
+      "timeSeconds": 3.48,
+      "frame": 287,
+      "situation": "unstructured",
+      "title": "No local pressure",
+      "confidence": 92,
+      "majorityFrames": 1,
+      "validFrames": 1,
+      "orientationValidated": true,
+      "reviewDecision": "include",
+      "labelSource": "expert_review",
+      "phase": "expert_accepted",
+      "visibleNodes": 7,
+      "possessionConfident": true,
+      "ballConfidence": 4,
+      "possessionClub": "Arsenal",
+      "pressingClub": "Burnley",
+      "attackDirection": "right_to_left",
+      "directionSource": "match_half_metadata",
+      "teamIdentityMap": {
+        "left": "Arsenal",
+        "right": "Burnley"
+      },
+      "ballHolderDistanceM": 1.979,
+      "description": "The reconstructed state shows limited coordinated pressure in the immediate ball area",
+      "evidence": [
+        "Majority class in 1 / 1 possession-reliable frames",
+        "1 defenders within 12 m",
+        "Nearest pressure 9.0 m",
+        "1 central screeners"
+      ],
+      "tags": [
+        "nearest defender distant",
+        "low local density",
+        "press structure unclear",
+        "unstructured",
+        "abstain"
+      ],
+      "probabilities": {
+        "unstructured": 0.922484,
+        "central_screen": 0.072953,
+        "trap_left": 1.5e-05,
+        "trap_right": 0.001727,
+        "high_press": 0.002821
+      },
+      "weakLabel": "abstain",
+      "weakRule": "abstain_ambiguous",
+      "thumbnail": "/demo/frames/h1-128-frame-0287.jpg",
+      "players": [
+        {
+          "x": 44.668,
+          "y": 31.093,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "build",
+          "role": "player",
+          "controlsBall": true
+        },
+        {
+          "x": 44.423,
+          "y": 49.51,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 50.37,
+          "y": 35.847,
+          "dx": -2.543,
+          "dy": -2.06,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 40.839,
+          "y": 47.434,
+          "dx": -4.609,
+          "dy": -3.672,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 45.754,
+          "y": 57.259,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 53.552,
+          "y": 51.3,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        }
+      ],
+      "ball": {
+        "x": 44.639,
+        "y": 29.114
+      }
+    },
+    {
+      "id": "bur-ars-20150411-h1-0203",
+      "videoId": "bur-ars-20150411-h1-0203",
+      "video": "/demo/video-h1-203-annotated.mp4",
+      "match": "2015-04-11 - 19-30 Burnley 0 - 1 Arsenal",
+      "canonicalImage": "/demo/canonical-h1-203.png",
+      "canonicalVideo": "/demo/canonical-h1-203.mp4",
+      "minute": "03:27.3",
+      "half": 1,
+      "timeSeconds": 2.0,
+      "frame": 107,
+      "situation": "central_screen",
+      "title": "Central screen",
+      "confidence": 99,
+      "majorityFrames": 45,
+      "validFrames": 77,
+      "orientationValidated": true,
+      "reviewDecision": "include",
+      "labelSource": "expert_review",
+      "phase": "expert_accepted",
+      "visibleNodes": 11,
+      "possessionConfident": true,
+      "ballConfidence": 17,
+      "possessionClub": "Burnley",
+      "pressingClub": "Arsenal",
+      "attackDirection": "left_to_right",
+      "directionSource": "match_half_metadata",
+      "teamIdentityMap": {
+        "left": "Arsenal",
+        "right": "Burnley"
+      },
+      "ballHolderDistanceM": 0.701,
+      "description": "The defending shape occupies central progression lanes ahead of the ball",
+      "evidence": [
+        "Majority class in 45 / 77 possession-reliable frames",
+        "2 defenders within 12 m",
+        "Nearest pressure 2.9 m",
+        "1 central screeners"
+      ],
+      "tags": [
+        "central corridor protected",
+        "forward lanes screened",
+        "compact central shape",
+        "central",
+        "screen",
+        "abstain"
+      ],
+      "probabilities": {
+        "unstructured": 1.4e-05,
+        "central_screen": 0.988587,
+        "trap_left": 0.00021,
+        "trap_right": 5.1e-05,
+        "high_press": 0.011139
+      },
+      "weakLabel": "abstain",
+      "weakRule": "abstain_ambiguous",
+      "thumbnail": "/demo/frames/h1-203-frame-0107.jpg",
+      "players": [
+        {
+          "x": 48.823,
+          "y": 36.921,
+          "dx": -2.674,
+          "dy": 2.27,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 49.745,
+          "y": 25.791,
+          "dx": -1.213,
+          "dy": 8.236,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 54.296,
+          "y": 28.333,
+          "dx": -0.267,
+          "dy": 4.18,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 48.9,
+          "y": 15.828,
+          "dx": -1.144,
+          "dy": 4.472,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 57.559,
+          "y": 14.191,
+          "dx": -2.256,
+          "dy": 13.6,
+          "team": "build",
+          "role": "player",
+          "controlsBall": true
+        },
+        {
+          "x": 51.081,
+          "y": 5.097,
+          "dx": -0.857,
+          "dy": 13.6,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 62.666,
+          "y": 27.749,
+          "dx": -5.461,
+          "dy": 4.807,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 52.464,
+          "y": 37.616,
+          "dx": -2.167,
+          "dy": -0.423,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 55.341,
+          "y": 16.598,
+          "dx": -1.061,
+          "dy": 12.072,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 63.259,
+          "y": 4.901,
+          "dx": -8.715,
+          "dy": 13.6,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        }
+      ],
+      "ball": {
+        "x": 56.894,
+        "y": 14.26
+      }
+    },
+    {
+      "id": "bur-ars-20150411-h1-0833",
+      "videoId": "bur-ars-20150411-h1-0833",
+      "video": "/demo/video-h1-833-annotated.mp4",
+      "match": "2015-04-11 - 19-30 Burnley 0 - 1 Arsenal",
+      "canonicalImage": "/demo/canonical-h1-833.png",
+      "canonicalVideo": "/demo/canonical-h1-833.mp4",
+      "minute": "14:01.6",
+      "half": 1,
+      "timeSeconds": 2.0,
+      "frame": 216,
+      "situation": "central_screen",
+      "title": "Central screen",
+      "confidence": 96,
+      "majorityFrames": 15,
+      "validFrames": 18,
+      "orientationValidated": true,
+      "reviewDecision": "include",
+      "labelSource": "expert_review",
+      "phase": "expert_accepted",
+      "visibleNodes": 8,
+      "possessionConfident": true,
+      "ballConfidence": 33,
+      "possessionClub": "Burnley",
+      "pressingClub": "Arsenal",
+      "attackDirection": "left_to_right",
+      "directionSource": "match_half_metadata",
+      "teamIdentityMap": {
+        "left": "Arsenal",
+        "right": "Burnley"
+      },
+      "ballHolderDistanceM": 1.99,
+      "description": "The defending shape occupies central progression lanes ahead of the ball",
+      "evidence": [
+        "Majority class in 15 / 18 possession-reliable frames",
+        "2 defenders within 12 m",
+        "Nearest pressure 7.4 m",
+        "1 central screeners"
+      ],
+      "tags": [
+        "central corridor protected",
+        "forward lanes screened",
+        "compact central shape",
+        "central",
+        "screen",
+        "abstain"
+      ],
+      "probabilities": {
+        "unstructured": 6.2e-05,
+        "central_screen": 0.962036,
+        "trap_left": 0.008296,
+        "trap_right": 3e-05,
+        "high_press": 0.029576
+      },
+      "weakLabel": "abstain",
+      "weakRule": "abstain_ambiguous",
+      "thumbnail": "/demo/frames/h1-833-frame-0216.jpg",
+      "players": [
+        {
+          "x": 57.511,
+          "y": 18.369,
+          "dx": 3.659,
+          "dy": 13.6,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 50.499,
+          "y": 17.284,
+          "dx": 2.541,
+          "dy": -0.475,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 60.458,
+          "y": 5.277,
+          "dx": 2.827,
+          "dy": 13.6,
+          "team": "build",
+          "role": "player",
+          "controlsBall": true
+        },
+        {
+          "x": 50.087,
+          "y": 1.794,
+          "dx": 2.309,
+          "dy": -3.166,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 57.018,
+          "y": 14.731,
+          "dx": 4.271,
+          "dy": 13.6,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 55.321,
+          "y": 5.01,
+          "dx": 3.833,
+          "dy": 13.6,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 62.9,
+          "y": 29.256,
+          "dx": -5.935,
+          "dy": 7.872,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        }
+      ],
+      "ball": {
+        "x": 62.282,
+        "y": 5.817
+      }
+    },
+    {
+      "id": "bur-ars-20150411-h1-1673",
+      "videoId": "bur-ars-20150411-h1-1673",
+      "video": "/demo/video-h1-1673-annotated.mp4",
+      "match": "2015-04-11 - 19-30 Burnley 0 - 1 Arsenal",
+      "canonicalImage": "/demo/canonical-h1-1673.png",
+      "canonicalVideo": "/demo/canonical-h1-1673.mp4",
+      "minute": "27:54.0",
+      "half": 1,
+      "timeSeconds": 1.0,
+      "frame": 25,
+      "situation": "high_press",
+      "title": "High press",
+      "confidence": 99,
+      "majorityFrames": 9,
+      "validFrames": 16,
+      "orientationValidated": true,
+      "reviewDecision": "include",
+      "labelSource": "expert_review",
+      "phase": "expert_accepted",
+      "visibleNodes": 12,
+      "possessionConfident": true,
+      "ballConfidence": 14,
+      "possessionClub": "Arsenal",
+      "pressingClub": "Burnley",
+      "attackDirection": "right_to_left",
+      "directionSource": "match_half_metadata",
+      "teamIdentityMap": {
+        "left": "Arsenal",
+        "right": "Burnley"
+      },
+      "ballHolderDistanceM": 0.479,
+      "description": "Several defenders compress the ball area during the build-up",
+      "evidence": [
+        "Majority class in 9 / 16 possession-reliable frames",
+        "2 defenders within 12 m",
+        "Nearest pressure 3.2 m",
+        "6 central screeners",
+        "Geometric rule: central screen"
+      ],
+      "tags": [
+        "dense pressure",
+        "defensive-third build-up",
+        "players converging on ball",
+        "high",
+        "press",
+        "central screen"
+      ],
+      "probabilities": {
+        "unstructured": 0.0,
+        "central_screen": 0.004998,
+        "trap_left": 0.0,
+        "trap_right": 0.000436,
+        "high_press": 0.994565
+      },
+      "weakLabel": "central_screen",
+      "weakRule": "central_corridor_screened",
+      "thumbnail": "/demo/frames/h1-1673-frame-0025.jpg",
+      "players": [
+        {
+          "x": 42.078,
+          "y": 27.808,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 43.191,
+          "y": 36.213,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 38.217,
+          "y": 33.568,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 33.915,
+          "y": 37.175,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "build",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 34.988,
+          "y": 30.887,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "build",
+          "role": "player",
+          "controlsBall": true
+        },
+        {
+          "x": 46.088,
+          "y": 27.813,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 37.157,
+          "y": 32.549,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 40.631,
+          "y": 36.305,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 35.326,
+          "y": 43.478,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 37.273,
+          "y": 42.711,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        },
+        {
+          "x": 45.351,
+          "y": 38.079,
+          "dx": 0.0,
+          "dy": 0.0,
+          "team": "press",
+          "role": "player",
+          "controlsBall": false
+        }
+      ],
+      "ball": {
+        "x": 34.533,
+        "y": 30.852
+      }
+    }
+  ]
+}

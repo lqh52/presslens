@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://presslens.local/schemas/team-identity-registry-v1.json",
+  "title": "PressLens match team identity registry",
+  "type": "object",
+  "required": ["version", "matches"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "const": 1
+    },
+    "matches": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/match"
+      }
+    }
+  },
+  "$defs": {
+    "clusterToInternal": {
+      "type": "object",
+      "required": ["0", "1"],
+      "additionalProperties": false,
+      "properties": {
+        "0": {
+          "enum": ["left", "right"]
+        },
+        "1": {
+          "enum": ["left", "right"]
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "0": {
+              "const": "left"
+            },
+            "1": {
+              "const": "right"
+            }
+          }
+        },
+        {
+          "properties": {
+            "0": {
+              "const": "right"
+            },
+            "1": {
+              "const": "left"
+            }
+          }
+        }
+      ]
+    },
+    "clusterToClub": {
+      "type": "object",
+      "required": ["0", "1"],
+      "additionalProperties": false,
+      "properties": {
+        "0": {
+          "type": ["string", "null"],
+          "minLength": 1
+        },
+        "1": {
+          "type": ["string", "null"],
+          "minLength": 1
+        }
+      }
+    },
+    "sequenceClusterToInternal": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/clusterToInternal"
+      }
+    },
+    "match": {
+      "type": "object",
+      "required": [
+        "display_name",
+        "soccernet_split",
+        "clubs",
+        "mapping_status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "soccernet_split": {
+          "enum": ["train", "valid", "test", "challenge"]
+        },
+        "clubs": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "mapping_status": {
+          "enum": ["unreviewed", "reviewed"]
+        },
+        "cluster_to_internal": {
+          "$ref": "#/$defs/clusterToInternal"
+        },
+        "sequence_cluster_to_internal": {
+          "$ref": "#/$defs/sequenceClusterToInternal"
+        },
+        "cluster_to_club": {
+          "$ref": "#/$defs/clusterToClub"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mapping_status": {
+                "const": "reviewed"
+              }
+            },
+            "required": ["mapping_status"]
+          },
+          "then": {
+            "required": [
+              "cluster_to_internal",
+              "cluster_to_club",
+              "sequence_cluster_to_internal"
+            ],
+            "properties": {
+              "cluster_to_club": {
+                "type": "object",
+                "required": ["0", "1"],
+                "properties": {
+                  "0": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "1": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
