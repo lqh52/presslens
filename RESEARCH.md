@@ -64,18 +64,18 @@ tracking, calibration, identity, and possession errors.
 #### Annotated broadcast frame
 
 <img
-  src="docs/research/central-screen-broadcast.jpg"
+  src="assets/central-screen-broadcast.jpg"
   alt="A broadcast frame with reconstructed player boxes and within-team graph edges"
   width="100%"
->
+/>
 
 #### Canonical tactical graph
 
 <img
-  src="docs/research/central-screen-canonical.png"
+  src="assets/central-screen-canonical.png"
   alt="The same central-screen situation projected into normalized pitch coordinates"
   width="100%"
->
+/>
 
 **Figure 1. From broadcast video to tactical structure.** The first panel shows
 the detected players and reconstructed within-team relationships in a reviewed

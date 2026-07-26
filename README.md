@@ -1,6 +1,6 @@
 # PressLens
 
-![PressLens — search the press and inspect the evidence](figure.png)
+![PressLens — search the press and inspect the evidence](assets/presslens-overview.png)
 
 PressLens is a football-intelligence application for retrieving tactical
 situations from match video with natural-language queries. It combines
