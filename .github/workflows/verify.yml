@@ -37,6 +37,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
+          cache-dependency-path: requirements-research.txt
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -r requirements-research.txt
       - run: python -m unittest discover -v
