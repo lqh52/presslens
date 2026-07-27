@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from build_reviewed_web_demo import align_canonical_orientation
+from scripts.build_reviewed_web_demo import align_canonical_orientation
 
 
 class CanonicalVideoOrientationTests(unittest.TestCase):

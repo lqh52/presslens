@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from text_embeddings import bm25_scores, hybrid_scores
+from scripts.text_embeddings import bm25_scores, hybrid_scores
 
 
 class HybridRetrievalTests(unittest.TestCase):
