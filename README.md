@@ -7,6 +7,11 @@ situations from match video with natural-language queries. It combines
 browser-side Arctic text embeddings, BM25 text matching, reconstructed pitch
 graphs, and synchronized video evidence.
 
+PressLens is a research prototype rather than a production analysis system.
+Its small, reviewed catalogue is intended to demonstrate the end-to-end
+workflow and provide inspectable evidence, not to represent match-wide
+coverage.
+
 Live application: <https://lqh52.github.io/presslens/>
 
 ## The research idea
@@ -143,4 +148,7 @@ research-only and are not part of the published application.
 Dataset access and usage conditions are described on the
 [SoccerNet data page](https://www.soccer-net.org/data). Video access may
 require an NDA. Footage should be stored and shared in accordance with those
-conditions. Local credentials can be kept in `.env`, which is ignored by Git.
+conditions. This repository does not grant rights to redistribute third-party
+footage. Before publishing a deployment, replace the example media endpoint
+with assets that you are authorized to host and share. Local credentials can
+be kept in `.env`, which is ignored by Git.

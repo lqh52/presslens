@@ -72,6 +72,7 @@ export function PressLens() {
   const [searching, setSearching] = useState(false);
   const [searchError, setSearchError] = useState("");
   const [notesOpen, setNotesOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const broadcastRef = useRef<HTMLVideoElement>(null);
   const canonicalRef = useRef<HTMLVideoElement>(null);
   const searchRequestRef = useRef<AbortController | null>(null);
@@ -241,28 +242,51 @@ export function PressLens() {
 
   return (
     <main className="app-shell">
-      <aside className="sidebar">
+      <aside
+        className={`sidebar ${mobileMenuOpen ? "sidebar--open" : ""}`}
+        id="primary-navigation"
+      >
         <div className="brand">
           <div className="brand-mark"><Target size={21} strokeWidth={2.4} /></div>
           <div><strong>PressLens</strong><span>Football intelligence</span></div>
         </div>
         <nav>
-          <button className={`nav-item ${activeTab === "retrieval" ? "nav-item--active" : ""}`} onClick={() => setActiveTab("retrieval")}><Search size={18} /> Tactical retrieval</button>
+          <button className={`nav-item ${activeTab === "retrieval" ? "nav-item--active" : ""}`} onClick={() => {
+            setActiveTab("retrieval");
+            setMobileMenuOpen(false);
+          }}><Search size={18} /> Tactical retrieval</button>
         </nav>
         <div className="sidebar-project">
           <span className="eyebrow">Runtime</span>
-          <div className="project-row"><span className="status-dot" /> Models on local node</div>
-          <span>GSR + graph classifier · {manifest.videoCount} videos</span>
+          <div className="project-row"><span className="status-dot" /> Browser retrieval ready</div>
+          <span>Arctic Embed + BM25 · {manifest.videoCount} reviewed videos</span>
         </div>
         <div className="sidebar-bottom">
-          <button onClick={() => setNotesOpen(true)}><CircleHelp size={17} /> README</button>
+          <button onClick={() => {
+            setNotesOpen(true);
+            setMobileMenuOpen(false);
+          }}><CircleHelp size={17} /> README</button>
           <div className="profile"><span>AI</span><div><strong>Football intelligence</strong><small>Real broadcast reconstruction</small></div></div>
         </div>
       </aside>
+      {mobileMenuOpen &&
+        <button
+          className="mobile-menu-backdrop"
+          aria-label="Close navigation menu"
+          onClick={() => setMobileMenuOpen(false)}
+        />}
 
       <section className="workspace">
         <header className="topbar">
-          <button className="mobile-menu" aria-label="Open menu"><Menu size={20} /></button>
+          <button
+            className="mobile-menu"
+            aria-controls="primary-navigation"
+            aria-expanded={mobileMenuOpen}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMobileMenuOpen((open) => !open)}
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
           <div className="crumbs"><strong>Tactical retrieval.</strong></div>
           <div className="top-actions">
             <span className="model-pill"><Sparkles size={14} /> Arctic Embed + BM25 · {manifest.videoCount} videos</span>
@@ -273,7 +297,7 @@ export function PressLens() {
           {activeTab === "retrieval" && <>
           <section className="intro" id="search">
             <div>
-              <span className="eyebrow">Real-video tactical retrieval</span>
+              <span className="eyebrow">Research prototype · real-video tactical retrieval</span>
               <h1>Search the press.<br />Inspect the evidence.</h1>
             </div>
             <div className="dataset-summary">

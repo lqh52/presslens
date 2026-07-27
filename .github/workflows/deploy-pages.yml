@@ -24,6 +24,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Run application tests
+        run: npm test
       - name: Restore deployment catalogue
         run: |
           mkdir -p public/demo

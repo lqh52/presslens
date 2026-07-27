@@ -1,7 +1,21 @@
 {
   "name": "presslens",
   "version": "0.1.0",
+  "description": "A football-intelligence research prototype for natural-language retrieval of tactical situations from match video.",
   "private": true,
+  "homepage": "https://lqh52.github.io/presslens/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lqh52/presslens.git"
+  },
+  "keywords": [
+    "football-analytics",
+    "sports-analytics",
+    "computer-vision",
+    "information-retrieval",
+    "nextjs",
+    "pytorch"
+  ],
   "scripts": {
     "predev": "node scripts/sync_deploy_catalog.mjs restore",
     "dev": "next dev",
