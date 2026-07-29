@@ -53,11 +53,75 @@ The current model and product use four classes:
 These labels describe the dominant structure in a short sequence. They are not
 event annotations for a single tackle or pressure action.
 
-## Supervision
+## Identity supervision
 
-Fixture-local examples provide identity context and validation. Conservative
-recovery is applied only to unresolved tracks. Tactical supervision is learned
-from canonical spatiotemporal graphs rather than broadcast appearance.
+Identity labels are fixture-local because team kits, goalkeepers, officials,
+staff, and broadcast conditions vary by match. A small reviewed seed set
+contains examples of both teams and the `other` class. These examples are used
+as in-context identity references and to validate the fixture model.
+
+Gemini labels tracks from representative frames, expanded body crops, and
+track boxes. A team prediction can become a fixture anchor only when it is not
+an abstention, the kit is visible, and the track has at least three retained
+detections. Visible, non-abstained `other` predictions are retained only as
+negative references.
+
+## Tactical supervision
+
+Supervised tactical examples are constructed from synchronized SkillCorner
+tracking, dynamic-event, and phase-of-play data:
+
+1. Select pressing-chain events and settled low-block intervals from the
+   provider labels.
+2. Normalize each sequence so the team in possession attacks from left to
+   right on a 105 × 68 metre pitch.
+3. Retain only frames with a detected ball and at least eight detected players
+   that can be mapped to a team. Extrapolated players are not added.
+4. Sample five ordered frames across the labeled interval.
+5. Convert players, the ball, motion, possession, and team relations into the
+   same graph schema used for projected broadcast video.
+
+The four training labels are defined programmatically before model training:
+
+- **High press — wing:** a pressing-chain event in a source `high_block`
+  phase, starting in a wide channel, with a pressing-chain length of at least
+  two.
+- **High press — central:** a pressing-chain event in a source `high_block`
+  phase that does not satisfy the wing rule.
+- **Medium press:** a pressing-chain event in a source `medium_block` phase.
+- **Low block:** a source `low_block` phase lasting at least four seconds; the
+  team out of possession is assigned as the defending team.
+
+Training and validation are separated by fixture so sequences from one match
+do not occur in both partitions. Reviewed broadcast-video sequences can be
+added as domain supervision after canonical reconstruction. Their labels
+belong to the exact temporal window, since different windows from the same
+video can represent different tactical phases.
+
+## Conservative identity recovery
+
+Recovery is restricted to unreviewed tracks that are missing an identity
+prediction or were labeled `unknown`/abstained. It uses a separate
+fixture-local model and follows these rules:
+
+- Each team must have at least three confident anchors. The team prototype is
+  the medoid of its anchors.
+- DINO appearance and normalized torso-colour distance must independently
+  select the same team.
+- Every reviewed team seed must be assigned to its expected team with
+  DINO/colour agreement.
+- Every reviewed `other` seed must be rejected by signal disagreement or by
+  being at least as close to an `other` reference as to the proposed team in
+  either DINO or colour space.
+- The candidate must fall inside the fixture-calibrated team radius and exceed
+  the fixture-calibrated separation margin.
+- Canonical evidence must contain at least three projected frames, with at
+  least 70% of projected positions on the pitch. Off-pitch evidence is a hard
+  team veto.
+
+The fixture model is disabled if its seed checks fail. A candidate that fails
+any gate remains `unknown` and requires review. Recovery never automatically
+assigns the `other` class.
 
 ## Application dataset
 
