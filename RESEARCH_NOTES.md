@@ -53,13 +53,9 @@ compactness, not merely one defender standing deep.
 - Missing nodes can reflect tracking, identity, or projection uncertainty.
 - A plausible canonical graph can still contain an incorrect individual track.
 
-## Published catalogue
+## Application dataset
 
-The current product contains 15 reviewed examples across four classes. Six
+The current product contains 15 annotated examples across four classes. Six
 examples are four seconds long and nine are eight seconds long. Broadcast
 videos are served at 1280 × 720 and canonical videos at 1050 × 590, all at
 25 frames per second.
-
-The catalogue is deliberately selective. It demonstrates the current
-end-to-end system and should not be interpreted as an exhaustive tactical
-dataset.

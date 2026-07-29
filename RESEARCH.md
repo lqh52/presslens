@@ -53,30 +53,22 @@ The current model and product use four classes:
 These labels describe the dominant structure in a short sequence. They are not
 event annotations for a single tackle or pressure action.
 
-## Supervision and review
+## Supervision
 
-Fixture-local reviewed examples provide identity context and validation.
-Confident identity proposals supply additional fixture data, while conservative
-recovery is restricted to unresolved tracks. Tactical supervision is learned
+Fixture-local examples provide identity context and validation. Conservative
+recovery is applied only to unresolved tracks. Tactical supervision is learned
 from canonical spatiotemporal graphs rather than broadcast appearance.
 
-Human review evaluates projection quality, identity quality, ball position,
-possession, attacking direction, tactical clarity, and class assignment.
-Ambiguous examples are excluded from the product catalogue.
+## Application dataset
 
-## Current published result
-
-The published catalogue contains 15 reviewed situations from reconstructed
-match video:
+The application contains 15 annotated sequences reconstructed from match
+video:
 
 - six four-second clips;
 - nine eight-second clips;
 - synchronized 1280 × 720 broadcast video;
 - synchronized 1050 × 590 canonical graph video;
 - four tactical classes.
-
-The product is an evidence interface for a small reviewed catalogue. It is not
-a claim of complete match coverage or production-level tactical accuracy.
 
 ## Evaluation
 
