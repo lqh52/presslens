@@ -49,6 +49,9 @@ preparation, model training, local review tools, generated graphs, raw video,
 annotations, model weights, and credentials are maintained outside the public
 product source.
 
+The current research design and interpretation guide are documented in
+[RESEARCH.md](RESEARCH.md) and [RESEARCH_NOTES.md](RESEARCH_NOTES.md).
+
 ## Use the application
 
 Requirements:

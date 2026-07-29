@@ -37,6 +37,4 @@ third_party
 /tests/
 /scripts/*.py
 /scripts/*.sh
-/RESEARCH.md
-/RESEARCH_NOTES.md
 /requirements-research.txt
