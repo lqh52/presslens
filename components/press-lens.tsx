@@ -48,6 +48,7 @@ const resolveManifestAssets = (manifest: DemoManifest): DemoManifest => ({
     canonicalImage: mediaPath(clip.canonicalImage),
     canonicalVideo: mediaPath(clip.canonicalVideo),
     thumbnail: mediaPath(clip.thumbnail),
+    evidence: clip.evidence.filter((item) => !item.toLowerCase().startsWith("model confidence")),
   })),
 });
 type RetrievalResult = {
@@ -164,13 +165,13 @@ export function PressLens() {
       .filter((clip) => !vectorResults || scores.has(clip.id))
       .map((clip) => ({
         ...clip,
-        score: vectorResults ? Math.round(scores.get(clip.id)! * 100) : clip.confidence,
+        score: vectorResults ? Math.round(scores.get(clip.id)! * 100) : undefined,
       }))
       .filter((clip) => (situation === "all" || clip.situation === situation)
         && (!reliablePossession || clip.possessionConfident))
       .sort((a, b) => vectorResults
         ? (order.get(a.id) ?? 999) - (order.get(b.id) ?? 999)
-        : b.confidence - a.confidence);
+        : 0);
   }, [manifest, vectorResults, situation, reliablePossession, searching]);
 
   const runSearch = async (value = query) => {
@@ -322,7 +323,7 @@ export function PressLens() {
           <section className="analysis-grid analysis-grid--retrieval">
             <div className="results-column">
               <div className="section-heading">
-                <div><h2>{submittedQuery ? "Ranked matches" : "Highest-confidence states"}</h2>
+                <div><h2>{submittedQuery ? "Ranked matches" : "Tactical states"}</h2>
                   <p>{results.length} results · semantic cosine + lexical BM25</p></div>
                 <div className="filters">
                   <label className="visibility-toggle"><input type="checkbox" checked={reliablePossession}
@@ -348,13 +349,12 @@ export function PressLens() {
                       <div className="result-meta"><span>{clip.id}</span><span>{clip.minute}</span>
                         <span className={`outcome outcome--${clip.situation}`}>{clip.title}</span></div>
                       <strong>{clip.description}</strong>
-                      <p>{clip.evidence.slice(0, 2).join(" · ")}</p>
                       <div className="evidence-tags"><span>{clip.visibleNodes} visible nodes</span>
                         <span>{clip.possessionClub} in possession</span>
                         <span>{clip.attackDirection.replaceAll("_", " → ")}</span>
                         <span>{clip.possessionConfident ? "possession reliable" : "possession uncertain"}</span></div>
                     </div>
-                    <div className="similarity"><strong>{clip.score}%</strong><span>{vectorResults ? "hybrid match" : "class conf."}</span></div>
+                    {vectorResults && <div className="similarity"><strong>{clip.score}%</strong><span>hybrid match</span></div>}
                   </button>
                 ))}
                 {searching
@@ -374,7 +374,6 @@ export function PressLens() {
               <div className="detail-topline"><span className="eyebrow">Selected model evidence</span></div>
               <div className="confidence-explainer">
                 <div><span>Retrieval match</span><strong>{selectedRetrievalScore === undefined ? "—" : `${Math.round(selectedRetrievalScore * 100)}%`}</strong><small>90% normalized semantic cosine plus 10% normalized BM25 lexical relevance, with narrow tactical-intent guards. Not a probability.</small></div>
-                <div><span>Classification confidence</span><strong>{selected.confidence}%</strong><small>Mean classifier probability for the accepted class across the selected excerpt.</small></div>
                 <div><span>Majority support</span><strong>{selected.majorityFrames}/{selected.validFrames}</strong><small>Valid frames assigned to this video’s final majority label.</small></div>
               </div>
               <div className="evidence-media-grid">
@@ -444,12 +443,10 @@ export function PressLens() {
               </div>
               <div className="canonical-note"><Info size={14} /><span>Either player controls both synchronized four-second videos. The canonical view uses calibrated pitch coordinates from each corresponding broadcast frame.</span></div>
 
-              <div className="detail-title"><div><h3>{selected.title}</h3><p>{selected.match} · {selected.videoId} · frame {selected.frame}</p></div>
-                <span className="confidence"><strong>{selected.confidence}%</strong><small>Classification confidence</small></span></div>
+              <div className="detail-title"><div><h3>{selected.title}</h3><p>{selected.match} · {selected.videoId} · frame {selected.frame}</p></div></div>
               <p className="detail-description">{selected.description}</p>
               <div className="metrics">
                 <div><span>Visible nodes</span><strong>{selected.visibleNodes} / 23</strong></div>
-                <div><span>Ball detector</span><strong>{selected.ballConfidence}%</strong></div>
                 <div><span>Possession</span><strong>{selected.possessionConfident ? "Reliable" : "Uncertain"}</strong></div>
                 <div><span>Possession team</span><strong>{selected.possessionClub}</strong></div>
                 <div><span>Pressing team</span><strong>{selected.pressingClub}</strong></div>
@@ -460,13 +457,6 @@ export function PressLens() {
               <div className="evidence-block"><h4>Geometric evidence</h4>
                 {selected.evidence.map((item, index) => <div className="evidence-row" key={item}><span>{index + 1}</span>
                   <div><strong>{item}</strong><small>{index < 3 ? "Measured from reconstructed pitch state" : "Independent weak-label rule"}</small></div></div>)}
-              </div>
-              <div className="probability-block">
-                <h4>Class probabilities</h4>
-                {situations.slice(1).map((item) => {
-                  const value = selected.probabilities[item.value as Situation] * 100;
-                  return <div className="probability-row" key={item.value}><span>{item.label}</span><i><b style={{ width: `${value}%` }} /></i><strong>{value.toFixed(1)}%</strong></div>;
-                })}
               </div>
             </aside>
           </section>
@@ -493,8 +483,8 @@ export function PressLens() {
               <li>Describe a tactical situation in the search field, or choose a suggested query.</li>
               <li>Use the situation and possession filters to narrow the ranked results.</li>
               <li>Select a result to open its synchronized broadcast and canonical pitch views.</li>
-              <li>Compare retrieval match with classification confidence: the hybrid score ranks text relevance, while classification confidence is the graph model’s class probability.</li>
-              <li>Inspect frame agreement, reconstructed geometry, direction, and class probabilities before interpreting a result.</li>
+              <li>Treat the hybrid match as a retrieval ranking score, not a probability.</li>
+              <li>Inspect frame agreement, reconstructed geometry, and direction before interpreting a result.</li>
             </ol>
             <p className="research-caveat"><Info size={15} /> Player locations, possession, team identity, and ball position are reconstructed model outputs and can contain errors.</p>
           </section>
