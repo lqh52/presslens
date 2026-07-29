@@ -13,17 +13,16 @@ import {
 
 const situations: Array<{ value: Situation | "all"; label: string }> = [
   { value: "all", label: "All situations" },
-  { value: "high_press", label: "High press" },
-  { value: "central_screen", label: "Central screen" },
-  { value: "trap_left", label: "Left trap" },
-  { value: "trap_right", label: "Right trap" },
-  { value: "unstructured", label: "No local pressure" },
+  { value: "high_press_wing", label: "High press — wing" },
+  { value: "high_press_central", label: "High press — central" },
+  { value: "medium_press", label: "Medium press" },
+  { value: "low_block", label: "Low block" },
 ];
 
 const suggestedQueries = [
-  "high press around the build-up",
-  "central passing lanes are screened",
-  "no local pressure around the ball",
+  "high press near the wing",
+  "central high press around the build-up",
+  "compact low block near the penalty area",
 ];
 
 const SEARCH_STATE_KEY = "presslens-search-state";
@@ -344,7 +343,7 @@ export function PressLens() {
                     key={clip.id} onClick={() => selectClip(clip)}>
                     <div className="result-rank">{String(index + 1).padStart(2, "0")}</div>
                     <div className="result-pitch"><img className="frame-thumb" src={clip.thumbnail} alt="" />
-                      <span className="play-chip"><Play size={10} fill="currentColor" /> 4 sec video</span></div>
+                      <span className="play-chip"><Play size={10} fill="currentColor" /> {clip.durationSeconds} sec video</span></div>
                     <div className="result-copy">
                       <div className="result-meta"><span>{clip.id}</span><span>{clip.minute}</span>
                         <span className={`outcome outcome--${clip.situation}`}>{clip.title}</span></div>
