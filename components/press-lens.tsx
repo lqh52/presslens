@@ -343,7 +343,7 @@ export function PressLens() {
                     key={clip.id} onClick={() => selectClip(clip)}>
                     <div className="result-rank">{String(index + 1).padStart(2, "0")}</div>
                     <div className="result-pitch"><img className="frame-thumb" src={clip.thumbnail} alt="" />
-                      <span className="play-chip"><Play size={10} fill="currentColor" /> 4 sec video</span></div>
+                      <span className="play-chip"><Play size={10} fill="currentColor" /> {clip.durationSeconds} sec video</span></div>
                     <div className="result-copy">
                       <div className="result-meta"><span>{clip.id}</span><span>{clip.minute}</span>
                         <span className={`outcome outcome--${clip.situation}`}>{clip.title}</span></div>

@@ -24,6 +24,7 @@ export type Clip = {
   canonicalImage: string;
   canonicalVideo: string;
   timeSeconds: number;
+  durationSeconds: number;
   frame: number;
   situation: Situation;
   title: string;
