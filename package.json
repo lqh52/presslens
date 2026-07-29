@@ -24,6 +24,7 @@
     "build:search-index": "python scripts/build_search_index.py",
     "prepare:deploy": "npm run build:search-index && node scripts/sync_deploy_catalog.mjs publish",
     "upload:supabase": "node scripts/upload_supabase_assets.mjs",
+    "download:supabase": "node scripts/download_supabase_assets.mjs",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run"
@@ -31,6 +32,7 @@
   "dependencies": {
     "@huggingface/transformers": "^3.7.6",
     "@supabase/supabase-js": "^2.57.4",
+    "dotenv": "^17.4.2",
     "lucide-react": "^0.468.0",
     "next": "^15.1.4",
     "react": "^19.0.0",
