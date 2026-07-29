@@ -1,9 +1,8 @@
 export type Situation =
-  | "high_press"
-  | "central_screen"
-  | "trap_left"
-  | "trap_right"
-  | "unstructured";
+  | "high_press_wing"
+  | "high_press_central"
+  | "medium_press"
+  | "low_block";
 
 export type Player = {
   x: number;

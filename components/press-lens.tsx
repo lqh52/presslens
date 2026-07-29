@@ -13,17 +13,16 @@ import {
 
 const situations: Array<{ value: Situation | "all"; label: string }> = [
   { value: "all", label: "All situations" },
-  { value: "high_press", label: "High press" },
-  { value: "central_screen", label: "Central screen" },
-  { value: "trap_left", label: "Left trap" },
-  { value: "trap_right", label: "Right trap" },
-  { value: "unstructured", label: "No local pressure" },
+  { value: "high_press_wing", label: "High press — wing" },
+  { value: "high_press_central", label: "High press — central" },
+  { value: "medium_press", label: "Medium press" },
+  { value: "low_block", label: "Low block" },
 ];
 
 const suggestedQueries = [
-  "high press around the build-up",
-  "central passing lanes are screened",
-  "no local pressure around the ball",
+  "high press near the wing",
+  "central high press around the build-up",
+  "compact low block near the penalty area",
 ];
 
 const SEARCH_STATE_KEY = "presslens-search-state";

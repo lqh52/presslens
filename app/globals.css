@@ -341,10 +341,10 @@ button { color: inherit; }
 .load-state code { padding: 8px 11px; border-radius: 5px; background: white; border: 1px solid var(--line); }
 .loading-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 7px rgba(201,239,90,.2); }
 .frame-thumb { display: block; width: 100%; height: 100px; object-fit: cover; border-radius: 6px; background: #102219; }
-.outcome--high_press { color: #87382b; background: #fde9e5; }
-.outcome--central_screen { color: #34517b; background: #e7eef9; }
-.outcome--trap_left, .outcome--trap_right { color: #69521c; background: #f6eed5; }
-.outcome--unstructured { color: #5d6661; background: #edf0ee; }
+.outcome--high_press_wing { color: #87382b; background: #fde9e5; }
+.outcome--high_press_central { color: #74365f; background: #f7e7f1; }
+.outcome--medium_press { color: #34517b; background: #e7eef9; }
+.outcome--low_block { color: #69521c; background: #f6eed5; }
 .view-tabs { display: flex; gap: 4px; margin-bottom: 8px; }
 .view-tabs button {
   border: 1px solid #d5ddd7; border-radius: 5px; padding: 6px 9px; background: white;

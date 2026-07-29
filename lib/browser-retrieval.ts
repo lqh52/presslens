@@ -85,33 +85,42 @@ async function embedQuery(
 
 export type TacticalQueryIntent = {
   unsupported: boolean;
-  preferred?: "high_press" | "central_screen" | "unstructured";
-  suppressed?: "high_press" | "central_screen" | "unstructured";
+  preferred?:
+    | "high_press_wing"
+    | "high_press_central"
+    | "medium_press"
+    | "low_block";
+  suppressed?:
+    | "high_press_wing"
+    | "high_press_central"
+    | "medium_press"
+    | "low_block";
 };
 
 export function tacticalQueryIntent(query: string): TacticalQueryIntent {
   const clean = query.toLowerCase().replaceAll("-", " ");
-  if (/\b(corner(?:\s+kick)?|free\s+kick|penalty|red\s+card|throw[\s-]?in|low\s+block)\b/.test(clean)) {
+  if (/\b(corner(?:\s+kick)?|free\s+kick|penalty|red\s+card|throw[\s-]?in)\b/.test(clean)) {
     return { unsupported: true };
   }
   if (
-    /\b(not (?:a )?(?:high )?press(?:ing)?|not pressing|without (?:local )?pressure|no (?:local )?pressure|limited coordinated pressure|passive defensive shape|unopposed (?:build[\s-]?up)?|free player in possession|lots of space around the ball|disorganized pressure|no nearby defender|low pressure on the ball)\b/.test(clean)
+    /\b(low block|deep block|defend(?:ing)? deep|compact near (?:their|the) (?:box|penalty area)|most players behind the ball)\b/.test(clean)
   ) {
-    return {
-      unsupported: false,
-      preferred: "unstructured",
-      suppressed: "high_press",
-    };
+    return { unsupported: false, preferred: "low_block" };
   }
   if (
-    /\b(high press|aggressive press|intense pressure high|counter[\s-]?press|close down|swarm(?:ing)? the ball|rushed pass|pressing the back line|compress(?:ing)? the ball|stop short build[\s-]?up)\b/.test(clean)
+    /\b(wing press|wide high press|press(?:ing)? (?:near|toward|on) (?:the )?(?:wing|flank|touchline)|wide pressing lane)\b/.test(clean)
   ) {
-    return { unsupported: false, preferred: "high_press" };
+    return { unsupported: false, preferred: "high_press_wing" };
   }
   if (
-    /\b(central screen|block the middle|central passing lanes?|through the cent(?:er|re)|midfield screen|central lanes?|number ten space|central defensive shape)\b/.test(clean)
+    /\b(central high press|high press through the cent(?:er|re)|press(?:ing)? central build[\s-]?up|central pressure)\b/.test(clean)
   ) {
-    return { unsupported: false, preferred: "central_screen" };
+    return { unsupported: false, preferred: "high_press_central" };
+  }
+  if (
+    /\b(medium press|mid block|middle third press|middle-third pressure)\b/.test(clean)
+  ) {
+    return { unsupported: false, preferred: "medium_press" };
   }
   return { unsupported: false };
 }
