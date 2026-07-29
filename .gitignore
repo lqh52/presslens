@@ -1,5 +1,6 @@
 node_modules
 .venv
+.node-env
 .local
 __pycache__
 *.py[cod]
@@ -28,4 +29,14 @@ models
 artifacts
 third_party
 *.log
+.slurm/
 .DS_Store
+
+# Local research workspace (not part of the public product repository)
+/data/
+/tests/
+/scripts/*.py
+/scripts/*.sh
+/RESEARCH.md
+/RESEARCH_NOTES.md
+/requirements-research.txt

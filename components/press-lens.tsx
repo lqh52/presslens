@@ -233,7 +233,7 @@ export function PressLens() {
   };
 
   if (loadError) {
-    return <main className="load-state"><strong>Dataset unavailable</strong><span>{loadError}</span><code>python scripts/build_reviewed_web_demo.py</code></main>;
+    return <main className="load-state"><strong>Dataset unavailable</strong><span>{loadError}</span><code>Check the deployed catalogue and try again.</code></main>;
   }
   if (!manifest || !selected) {
     return <main className="load-state"><span className="loading-dot" /> Loading reconstructed game states…</main>;

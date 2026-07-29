@@ -43,15 +43,11 @@ modelling stage.
 
 ## What is in this repository?
 
-The repository has two distinct parts:
-
-- **Application:** the Next.js interface, browser retrieval, deployment
-  catalogue, and media integration.
-- **Research:** scripts for dataset preparation, game-state reconstruction,
-  graph construction, weak supervision, model training, review, and evaluation.
-
-Raw SoccerNet video, generated graphs, model weights, local annotations, and
-credentials are intentionally excluded from Git.
+The public repository contains the Next.js interface, browser retrieval,
+deployment catalogue, media integration, and application tests. Dataset
+preparation, model training, local review tools, generated graphs, raw video,
+annotations, model weights, and credentials are maintained outside the public
+product source.
 
 ## Use the application
 
@@ -88,7 +84,7 @@ The first search downloads the quantized
 the browser. Search then runs locally: 90% normalized embedding cosine
 similarity and 10% normalized BM25 lexical relevance. Narrow intent guards
 handle explicit negation and abstain for unsupported situations such as set
-pieces and low blocks. The retrieval score is relevance, not probability.
+pieces. The retrieval score is relevance, not probability.
 
 Run the application checks:
 
@@ -107,41 +103,19 @@ The hosted version uses:
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for setup and update instructions.
 
-## Reproduce or extend the research
-
-Research setup is separate from normal application use. It covers:
-
-1. creating a Python environment;
-2. requesting and downloading SoccerNet data;
-3. defining the scientific task and hypotheses;
-4. producing calibrated game-state graphs;
-5. generating synthetic and weak tactical labels;
-6. training graph and team-identity models;
-7. conducting blinded review and quantitative evaluation;
-8. exporting reviewed examples to the application.
-
-See [RESEARCH.md](RESEARCH.md) for the reproducible workflow and
-[RESEARCH_NOTES.md](RESEARCH_NOTES.md) for the tactical class definitions shown
-inside the application.
-
 ## Supported tactical classes
 
-- **Central screen:** defenders occupy central progression lanes ahead of the
-  ball.
-- **High press:** several defenders compress the ball area while the possession
-  team builds in its defensive third.
-- **No local pressure:** coordinated pressure near the ball is absent or
-  structurally unclear.
+- **High press — wing:** pressure engages high and is concentrated near a
+  flank.
+- **High press — central:** pressure engages high through central build-up
+  lanes.
+- **Medium press:** the defending shape engages around the middle third.
+- **Low block:** the defending team stays compact near its own penalty area.
 
-Touchline-trap classes remain experimental and are not presented as supported
-classes without retained reviewed examples.
-
-The published catalogue currently retains eight reviewed, four-second source
-videos. Each result provides a synchronized annotated broadcast and canonical
-pitch video. The current `v2` media includes player boxes above the retained
-confidence threshold, reviewed team identities, graph edges, and ball
-position. Tactical-training, synthetic-label, and annotation interfaces remain
-research-only and are not part of the published application.
+The published catalogue contains 15 reviewed examples: six four-second clips
+and nine eight-second clips. Each result provides synchronized broadcast and
+canonical pitch video with team structure, graph edges, pressure relationships,
+and ball position.
 
 ## Data and licensing
 

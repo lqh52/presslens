@@ -1,127 +1,67 @@
 # Deploy PressLens with GitHub Pages and Supabase
 
-The deployed application is static. GitHub Pages serves the interface,
-catalogue, and precomputed document vectors. Supabase Storage serves the video
-and image assets. Quantized Arctic Embed query inference, cosine similarity,
-BM25, and focused query-intent guards all run inside the visitor's browser.
+PressLens is a static Next.js application. GitHub Pages serves the interface
+and retrieval catalogue, while Supabase Storage serves the reviewed video and
+image assets.
 
-## 1. Confirm video-sharing permission
+## Requirements
 
-The current clips originate from NDA-controlled SoccerNet access. Confirm that
-the intended audience and bucket visibility comply with the applicable dataset
-terms before uploading any video. The uploader below creates a public bucket
-and is suitable only when that visibility is permitted.
+- Node.js 20 or newer
+- npm 10 or newer
+- A Supabase project
+- A GitHub repository with Pages configured to use GitHub Actions
 
-## 2. Create a Supabase project
+## Configure Supabase
 
-1. Create a free project at <https://supabase.com/dashboard>.
-2. Open **Project Settings → API**.
-3. Copy the project URL.
-4. Create or copy a secret key (`sb_secret_...`). This credential is used only
-   by the upload command and is kept out of `NEXT_PUBLIC_*` variables and
-   source control. A legacy `service_role` key also works, but Supabase
-   recommends secret keys for new projects.
-
-## 3. Prepare the retained assets and browser index
-
-From the repository root:
-
-```bash
-npm install
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements-research.txt
-
-python scripts/build_reviewed_web_demo.py
-PYTHONPATH=scripts python scripts/build_search_index.py \
-  --model models/text-embedding/snowflake-arctic-embed-s \
-  --pooling cls \
-  --query-prefix "Represent this sentence for searching relevant passages: " \
-  --browser-model Snowflake/snowflake-arctic-embed-s \
-  --cosine-weight 0.9
-node scripts/sync_deploy_catalog.mjs publish
-```
-
-On Windows PowerShell, activate the environment with
-`.\.venv\Scripts\Activate.ps1`.
-
-The reviewed web builder removes obsolete files only from `public/demo`.
-Original videos, tracking states, graphs, and annotations under `data/` remain
-untouched. The Arctic model must be available at
-`models/text-embedding/snowflake-arctic-embed-s`; model weights are intentionally
-excluded from Git.
-
-## 4. Upload media to Supabase Storage
-
-Set the credentials in your shell:
+Create a public Storage bucket for media and set these variables locally:
 
 ```bash
 export SUPABASE_URL="https://PROJECT_REF.supabase.co"
-export SUPABASE_SERVICE_ROLE_KEY="sb_secret_YOUR_SECRET_KEY"
+export SUPABASE_SERVICE_ROLE_KEY="YOUR_SECRET_KEY"
 export SUPABASE_BUCKET="presslens-media"
-
-node scripts/upload_supabase_assets.mjs
 ```
 
-To update only the broadcast and canonical MP4s referenced by the current
-manifest:
+Upload all media referenced by `public/demo/manifest.json`:
 
 ```bash
-node scripts/upload_supabase_assets.mjs --videos-only
+npm run upload:supabase
 ```
 
-The script uploads only media referenced by the current manifest. At the end it
-prints the public media endpoint as:
+To upload only broadcast and canonical videos:
+
+```bash
+npm run upload:supabase -- --videos-only
+```
+
+The command prints the public media endpoint required by the application.
+
+## Configure GitHub Pages
+
+In **Settings → Pages**, select **GitHub Actions** as the source. Add the
+Supabase public media endpoint under **Settings → Secrets and variables →
+Actions**:
 
 ```text
-NEXT_PUBLIC_MEDIA_ASSET_BASE_URL=<generated endpoint>
+MEDIA_ASSET_BASE_URL=https://PROJECT_REF.supabase.co/storage/v1/object/public/presslens-media
 ```
 
-Keep that URL. The service-role key is not needed by the deployed website.
+The workflow in `.github/workflows/deploy-pages.yml` builds the application
+with the repository base path and deploys the static export.
 
-## 5. Create and configure the GitHub repository
+## Deploy
 
-1. Create a GitHub repository, for example `presslens`.
-2. Push this project to its `main` branch.
-3. Open **Settings → Pages** and set **Source** to **GitHub Actions**.
-4. Open **Settings → Secrets and variables → Actions → Secrets**.
-5. Add:
+Push the reviewed catalogue and application changes to `main`, or run
+**Deploy PressLens to GitHub Pages** manually from the Actions tab:
 
-   - Name: `MEDIA_ASSET_BASE_URL`
-   - Value: the endpoint printed by the upload command.
+```bash
+git push origin main
+```
 
-The workflow automatically uses `/<repository-name>` as the GitHub Pages base
-path and stops with an explicit error when the media endpoint is absent. If the
-repository itself is named `<username>.github.io`, remove the
-`NEXT_PUBLIC_BASE_PATH` line from `.github/workflows/deploy-pages.yml`.
-
-## 6. Deploy
-
-Push to `main`, or run **Deploy PressLens to GitHub Pages** manually from the
-Actions tab. The resulting URL is:
+The published URL follows this form:
 
 ```text
 https://USERNAME.github.io/REPOSITORY/
 ```
-
-On the first search, the browser downloads and caches the quantized
-`Snowflake/snowflake-arctic-embed-s` model from Hugging Face. The deployed
-index uses CLS pooling, the model's retrieval query prefix, and a 90/10
-semantic-to-BM25 blend. Later searches use the cached model. Video media is
-loaded from Supabase.
-
-## 7. Update the deployed dataset
-
-After changing review decisions or clips:
-
-1. Repeat steps 3 and 4.
-2. Commit the updated files in `deploy/catalog/`.
-3. Push to `main`.
-
-Because uploaded objects use a one-year cache header, use versioned filenames
-when the bytes of an existing clip change (for example, `-v2.mp4`), then update
-both the video and canonical-video paths in the retained manifest. This avoids
-clients receiving stale media.
 
 ## Local production test
 
@@ -133,4 +73,4 @@ npm run build
 python3 -m http.server 4173 --directory out
 ```
 
-The empty Supabase URL makes this test use the local `public/demo` media.
+An empty media endpoint uses files under the local `public/demo` directory.
