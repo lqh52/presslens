@@ -95,8 +95,6 @@ tracks, and excluded clips should not be counted as correct predictions.
 - Ball observations can be sparse or incorrect.
 - Possession and attacking direction depend on reconstructed geometry.
 - Fixture-local validation data is limited.
-- The published catalogue is small and not class-balanced enough for broad
-  performance claims.
 - Tactical labels describe short dominant phases and may not capture
   counterpressing or rapid phase transitions.
 
