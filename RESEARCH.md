@@ -311,18 +311,144 @@ not prerequisites for either quickstart. Gemini requires one of
 `AGENT_PLATFORM_API`, `GEMINI_API_KEY`, or `GOOGLE_API_KEY`. The local Qwen
 workflow downloads a large checkpoint and requires suitable GPU memory.
 
-### Canonical reconstruction boundary
+### Broadcast video to canonical pitch coordinates
 
-The canonical reconstruction path depends on SoccerNet Game State
-Reconstruction, its pretrained YOLO and PRTReID checkpoints, and authorized
-SoccerNet footage. This repository currently contains adapters for those
-outputs but does not contain or install that external stack. Therefore the
-complete broadcast-to-canonical pipeline is not yet reproducible from this
-repository alone.
+This advanced path runs the official
+[SoccerNet Game State Reconstruction](https://github.com/SoccerNet/sn-gamestate)
+(GSR) baseline on a video, then converts its TrackLab state into PressLens
+graphs. The result contains tracked people, roles, team-side clusters, camera
+calibration, and player and ball locations in canonical 105 x 68 metre pitch
+coordinates.
 
-Scripts such as `run_gsr_batch.py`, `process_gsr_outputs.py`,
-`project_tracking_to_pitch.py`, and `detect_track_ball.py` belong to that
-advanced path. They should not be used as fresh-clone quickstarts.
+GSR has its own Python 3.9 environment and GPU dependencies. Keep it separate
+from the PressLens Python 3.11 environment. From the PressLens repository root:
+
+```bash
+mkdir -p third_party
+git clone https://github.com/SoccerNet/sn-gamestate.git \
+  third_party/sn-gamestate
+
+cd third_party/sn-gamestate
+uv venv --python 3.9
+uv pip install -e .
+uv run mim install mmcv==2.0.1
+cd ../..
+```
+
+Install `uv` first if it is unavailable:
+<https://docs.astral.sh/uv/getting-started/installation/>. These commands
+follow the upstream GSR installation guide. GSR requires a CUDA-capable GPU;
+reduce module batch sizes in
+`third_party/sn-gamestate/sn_gamestate/configs/soccernet.yaml` if GPU memory is
+insufficient.
+
+Verify the external installation before using PressLens:
+
+```bash
+third_party/sn-gamestate/.venv/bin/tracklab --help
+```
+
+The upstream baseline downloads its pretrained detector, PRTReID, calibration,
+and other model files on first use. The expected files subsequently include:
+
+```text
+third_party/sn-gamestate/pretrained_models/
+  calibration/
+  reid/prtreid-soccernet-baseline.pth.tar
+  yolo/yolo11m.pt
+```
+
+The upstream validation example can be used to trigger and verify all
+automatic downloads:
+
+```bash
+cd third_party/sn-gamestate
+uv run tracklab -cn soccernet
+cd ../..
+```
+
+That upstream command may also download the SoccerNet-GSR benchmark dataset.
+For an arbitrary local football video, edit
+`examples/research/gsr-clips.example.json` and set `clip_path` to the absolute
+MP4 path. `nframes` may be omitted because PressLens uses `ffprobe` to obtain
+it.
+
+Validate the paths and show the TrackLab command without starting inference:
+
+```bash
+python scripts/run_gsr_batch.py \
+  --manifest examples/research/gsr-clips.example.json \
+  --gpu-ids 0 \
+  --dry-run
+```
+
+Run GSR:
+
+```bash
+python scripts/run_gsr_batch.py \
+  --manifest examples/research/gsr-clips.example.json \
+  --gpu-ids 0
+```
+
+The batch runner writes logs to `data/logs/gsr-batch/` and the TrackLab state
+below:
+
+```text
+third_party/sn-gamestate/outputs/local-demo/<date>/<time>/states/local-demo.pklz
+```
+
+It validates completed states and resumes without recomputing valid results.
+For multiple GPUs, use a comma-separated list such as `--gpu-ids 0,1`.
+
+Locate the exact state produced by the preceding run:
+
+```bash
+find third_party/sn-gamestate/outputs/local-demo \
+  -path '*/states/local-demo.pklz' -print
+```
+
+Convert it into PressLens graphs. Replace `<state-path>` with the path printed
+above:
+
+```bash
+third_party/sn-gamestate/.venv/bin/python \
+  scripts/convert_tracklab_state.py \
+  --state "<state-path>" \
+  --video "/absolute/path/to/football-clip.mp4" \
+  --yolo third_party/sn-gamestate/pretrained_models/yolo/yolo11m.pt \
+  --output data/graphs/local-demo.npz \
+  --sequence-id local-demo \
+  --neutral-team-names \
+  --disable-team-labels \
+  --disable-team-model
+```
+
+This command uses the GSR camera calibration and person tracks, runs the
+upstream YOLO checkpoint for COCO `sports ball`, and creates:
+
+- `data/graphs/local-demo.npz`: graph tensors and visibility masks;
+- `data/graphs/local-demo.jsonl`: per-frame pitch coordinates, possession,
+  direction provenance, ball confidence, and team-side metadata.
+
+Neutral names deliberately report `Team A` and `Team B`; they do not claim
+club identity. Researchers can replace them with reviewed identities using
+the converter's `--match-registry` and `--match-id` options.
+
+Derive auditable heuristic tactical labels from the reconstructed graph:
+
+```bash
+python scripts/derive_weak_tactical_labels.py \
+  --graphs data/graphs/local-demo.npz \
+  --output data/graphs/local-demo-weak-labels.npz
+```
+
+`process_gsr_outputs.py` automates conversion, direction calibration, weak
+labeling, and classification for a multi-match experiment, but it additionally
+requires a reviewed team registry, at least two clips per match-half for
+direction voting, and a trained tactical checkpoint. Use the direct conversion
+above for a first external reproduction. The official upstream README is the
+source of truth for GSR installation, model downloads, supported CUDA
+versions, and dataset version changes.
 
 ### Files created locally
 

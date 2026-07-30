@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "clips": [
+    {
+      "id": "local-demo",
+      "clip_path": "/absolute/path/to/football-clip.mp4"
+    }
+  ]
+}
