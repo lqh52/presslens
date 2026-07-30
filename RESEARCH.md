@@ -168,3 +168,46 @@ The public repository contains the product, reviewed catalogue metadata, and
 this current methodology description. Raw footage, credentials, annotations,
 evidence crops, model weights, generated graphs, review interfaces, and
 fixture-specific diagnostics remain outside the public repository.
+
+## Run the research pipeline
+
+The research code is maintained on the private `dev` branch. Create an
+isolated Python environment and install its dependencies:
+
+```bash
+git switch dev
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements-research.txt
+```
+
+Run the complete research test suite:
+
+```bash
+python -m pytest -q
+```
+
+Research commands read manifests, footage, annotations, and model checkpoints
+from the ignored local workspace. Inspect each command before supplying those
+local paths:
+
+```bash
+python scripts/benchmark_player_tracking.py --help
+python scripts/detect_track_ball.py --help
+python scripts/train_graph_classifier.py --help
+```
+
+For example, run a detector/tracker experiment from local manifest and
+experiment definitions:
+
+```bash
+python scripts/benchmark_player_tracking.py run \
+  --manifest data/manifests/player-tracking-benchmark.json \
+  --experiments data/manifests/player-tracking-experiments.json \
+  --output data/logs/player-tracking
+```
+
+The `data/`, `models/`, `artifacts/`, and `third_party/` directories are
+intentionally ignored. Do not commit footage, licensed provider data,
+credentials, generated outputs, or model checkpoints.

@@ -43,10 +43,11 @@ modelling stage.
 
 ## What is in this repository?
 
-The repository contains the Next.js interface, browser retrieval, deployment
-catalogue, media integration, research pipeline source, and tests. Raw video,
-licensed datasets, generated graphs, extracted features, model weights,
-review outputs, and credentials remain outside Git.
+The public repository contains the Next.js interface, browser retrieval,
+deployment catalogue, media integration, and application tests. Dataset
+preparation, model training, local review tools, generated graphs, raw video,
+annotations, model weights, and credentials are maintained outside the public
+product source.
 
 The current research design and interpretation guide are documented in
 [RESEARCH.md](RESEARCH.md) and [RESEARCH_NOTES.md](RESEARCH_NOTES.md).
@@ -94,49 +95,6 @@ Run the application checks:
 npm test
 npm run build
 ```
-
-## Run the research pipeline
-
-The research code is maintained on the `dev` branch. Create an isolated Python
-environment and install its dependencies:
-
-```bash
-git switch dev
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements-research.txt
-```
-
-Run the complete research test suite:
-
-```bash
-python -m pytest -q
-```
-
-Research commands read manifests, footage, annotations, and model checkpoints
-from the ignored local workspace. Inspect each command before supplying those
-local paths:
-
-```bash
-python scripts/benchmark_player_tracking.py --help
-python scripts/detect_track_ball.py --help
-python scripts/train_graph_classifier.py --help
-```
-
-For example, run a detector/tracker experiment from local manifest and
-experiment definitions:
-
-```bash
-python scripts/benchmark_player_tracking.py run \
-  --manifest data/manifests/player-tracking-benchmark.json \
-  --experiments data/manifests/player-tracking-experiments.json \
-  --output data/logs/player-tracking
-```
-
-The `data/`, `models/`, `artifacts/`, and `third_party/` directories are
-intentionally ignored. Do not commit footage, licensed provider data,
-credentials, generated outputs, or model checkpoints.
 
 ## Deploy the application
 
