@@ -34,7 +34,3 @@ third_party
 
 # Local research workspace (not part of the public product repository)
 /data/
-/tests/
-/scripts/*.py
-/scripts/*.sh
-/requirements-research.txt
