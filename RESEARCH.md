@@ -162,52 +162,178 @@ tracks, and excluded clips should not be counted as correct predictions.
 - Tactical labels describe short dominant phases and may not capture
   counterpressing or rapid phase transitions.
 
-## Reproducibility boundary
+## Reproducing the research
 
-The public repository contains the product, reviewed catalogue metadata, and
-this current methodology description. Raw footage, credentials, annotations,
-evidence crops, model weights, generated graphs, review interfaces, and
-fixture-specific diagnostics remain outside the public repository.
+This section is for researchers cloning the repository. It separates examples
+that run from a fresh clone from experiments that require licensed football
+video or external game-state reconstruction software.
 
-## Run the research pipeline
+### System requirements
 
-The research code is maintained on the private `dev` branch. Create an
-isolated Python environment and install its dependencies:
+- Git
+- Python 3.11
+- `ffmpeg` and `ffprobe` for video experiments
+- A CUDA GPU is optional for the quickstarts and recommended for video ranking
+  and model training
+
+Create the Python environment from the repository root:
 
 ```bash
-git switch dev
-python3 -m venv .venv
+python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements-research.txt
-```
-
-Run the complete research test suite:
-
-```bash
 python -m pytest -q
 ```
 
-Research commands read manifests, footage, annotations, and model checkpoints
-from the ignored local workspace. Inspect each command before supplying those
-local paths:
+The tested suite contains unit tests that construct temporary inputs; it does
+not require football footage or pretrained project checkpoints.
+
+### Quickstart A: train the synthetic graph baseline
+
+This experiment requires no external data and downloads no model weights. It
+generates controlled player-and-ball graphs and trains the tactical graph
+classifier:
 
 ```bash
-python scripts/benchmark_player_tracking.py --help
-python scripts/detect_track_ball.py --help
-python scripts/train_graph_classifier.py --help
+python scripts/generate_synthetic_graphs.py \
+  --output data/graphs/synthetic.npz \
+  --samples 5000
+
+python scripts/train_graph_classifier.py \
+  --data data/graphs/synthetic.npz \
+  --output models/tactical_graph_net.pt \
+  --epochs 5
 ```
 
-For example, run a detector/tracker experiment from local manifest and
-experiment definitions:
+The first command creates the training set. The second creates
+`models/tactical_graph_net.pt` and a metrics JSON file. Both locations are
+excluded from Git because they are generated outputs, not missing repository
+inputs.
+
+### Quickstart B: track people in any MP4
+
+Edit `examples/research/clips.example.json` so `video` points to an MP4 on your
+machine. Then run:
 
 ```bash
 python scripts/benchmark_player_tracking.py run \
-  --manifest data/manifests/player-tracking-benchmark.json \
-  --experiments data/manifests/player-tracking-experiments.json \
-  --output data/logs/player-tracking
+  --manifest examples/research/clips.example.json \
+  --experiments examples/research/player-tracking-experiments.json \
+  --output data/benchmarks/player-tracking \
+  --device cpu
+
+python scripts/benchmark_player_tracking.py summarize \
+  --results data/benchmarks/player-tracking \
+  --output data/benchmarks/player-tracking-summary.json
 ```
 
-The `data/`, `models/`, `artifacts/`, and `third_party/` directories are
-intentionally ignored. Do not commit footage, licensed provider data,
-credentials, generated outputs, or model checkpoints.
+The example uses the official Ultralytics `yolo26n.pt` checkpoint. Ultralytics
+downloads it automatically on first use. This baseline tracks COCO `person`
+detections; it does not yet distinguish players, goalkeepers, referees, or
+staff, and it does not detect the ball. Those are research targets rather than
+claims of the baseline.
+
+Ultralytics publishes YOLO26 weights and documents their AGPL-3.0 and
+enterprise licensing options:
+<https://docs.ultralytics.com/models/yolo26/>.
+
+### Football datasets
+
+#### SoccerNet broadcast video
+
+SoccerNet video is not redistributed by this repository. Researchers must
+complete the SoccerNet NDA and receive a video password:
+<https://www.soccer-net.org/data>. SoccerNet states that the dataset is for
+research and not commercial use:
+<https://www.soccer-net.org/faq>.
+
+After access is approved, download one match at both resolutions. Replace the
+match identifier with a path listed by SoccerNet:
+
+```bash
+python scripts/download_soccernet_matches.py \
+  --match "train=CHAMPIONSHIP/SEASON/GAME" \
+  --resolution 224p
+
+python scripts/download_soccernet_matches.py \
+  --match "train=CHAMPIONSHIP/SEASON/GAME" \
+  --resolution 720p
+```
+
+The downloader prompts for the password without writing it to disk and stores
+the videos and `Labels-v2.json` below `data/raw/soccernet/`.
+
+Create uniformly sampled in-play candidate windows:
+
+```bash
+python scripts/build_candidates.py \
+  --game-dir "data/raw/soccernet/CHAMPIONSHIP/SEASON/GAME" \
+  --output data/manifests/candidates.json
+```
+
+Rank candidates with X-CLIP:
+
+```bash
+python scripts/rank_video_candidates.py \
+  --manifest data/manifests/candidates.json \
+  --output data/manifests/ranked_candidates.json \
+  --limit 100 \
+  --top-k 20
+```
+
+`microsoft/xclip-base-patch32` is downloaded automatically from Hugging Face
+on first use. Ranking is practical on a CUDA GPU and can be slow on CPU.
+
+#### Other supported sources
+
+- `scripts/build_statsbomb_pressure_maps.py` downloads events and 360 data for
+  an explicitly supplied StatsBomb match ID. Follow the attribution and
+  licensing requirements in <https://github.com/statsbomb/open-data>.
+- `scripts/build_skillcorner_pressing_samples.py` consumes match metadata,
+  dynamic events, phase labels, and tracking files obtained from
+  <https://github.com/SkillCorner/opendata>. Supply those files through the
+  script's required command-line arguments.
+
+### Model acquisition
+
+| Model | Acquisition |
+| --- | --- |
+| YOLO26 | Use an official filename such as `yolo26n.pt`; Ultralytics downloads it on first use. |
+| X-CLIP | `rank_video_candidates.py` downloads `microsoft/xclip-base-patch32` from Hugging Face. |
+| MiniLM text encoder | Run `python scripts/download_text_embedding_model.py`. |
+| DINOv2-small | `extract_dino_track_features.py` downloads `facebook/dinov2-small` from Hugging Face. |
+| Tactical graph model | Generate data and train it with Quickstart A; no checkpoint is supplied. |
+| Team/role models | Train them from reviewed fixture data with `train_team_identity.py` and `classify_track_identities.py`; they are fixture-specific. |
+
+The local Qwen and Gemini labeling scripts are optional annotation workflows,
+not prerequisites for either quickstart. Gemini requires one of
+`AGENT_PLATFORM_API`, `GEMINI_API_KEY`, or `GOOGLE_API_KEY`. The local Qwen
+workflow downloads a large checkpoint and requires suitable GPU memory.
+
+### Canonical reconstruction boundary
+
+The canonical reconstruction path depends on SoccerNet Game State
+Reconstruction, its pretrained YOLO and PRTReID checkpoints, and authorized
+SoccerNet footage. This repository currently contains adapters for those
+outputs but does not contain or install that external stack. Therefore the
+complete broadcast-to-canonical pipeline is not yet reproducible from this
+repository alone.
+
+Scripts such as `run_gsr_batch.py`, `process_gsr_outputs.py`,
+`project_tracking_to_pitch.py`, and `detect_track_ball.py` belong to that
+advanced path. They should not be used as fresh-clone quickstarts.
+
+### Files created locally
+
+The following directories are created by the commands above:
+
+- `data/`: downloaded, licensed, derived, or generated datasets;
+- `models/`: downloaded or trained checkpoints;
+- `artifacts/`: reports and rendered research outputs;
+- `third_party/`: separately installed external research systems.
+
+They are excluded from Git to prevent redistribution of licensed footage,
+large generated files, credentials, and machine-specific external
+dependencies. The committed examples under `examples/research/` define the
+input schemas needed by the public quickstart.

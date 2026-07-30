@@ -88,6 +88,7 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=Path("models/tactical_graph_net.pt"))
     parser.add_argument("--epochs", type=int, default=20)
     parser.add_argument("--batch-size", type=int, default=256)
+    parser.add_argument("--workers", type=int, default=0)
     parser.add_argument("--seed", type=int, default=7)
     args = parser.parse_args()
     torch.manual_seed(args.seed)
@@ -98,8 +99,19 @@ def main() -> None:
     dataset = TensorDataset(x, y)
     train_size = int(len(dataset) * 0.8)
     train, valid = random_split(dataset, [train_size, len(dataset) - train_size], generator=torch.Generator().manual_seed(args.seed))
-    train_loader = DataLoader(train, args.batch_size, shuffle=True, num_workers=4, pin_memory=True)
-    valid_loader = DataLoader(valid, args.batch_size * 2, num_workers=4, pin_memory=True)
+    train_loader = DataLoader(
+        train,
+        args.batch_size,
+        shuffle=True,
+        num_workers=args.workers,
+        pin_memory=True,
+    )
+    valid_loader = DataLoader(
+        valid,
+        args.batch_size * 2,
+        num_workers=args.workers,
+        pin_memory=True,
+    )
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = TacticalGraphNet(x.shape[-1], len(names)).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=2e-3, weight_decay=1e-4)

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "experiments": [
+    {
+      "name": "yolo26n-botsort",
+      "model": "yolo26n.pt",
+      "tracker": "botsort.yaml",
+      "confidence": 0.15,
+      "iou": 0.7,
+      "imgsz": 640
+    }
+  ]
+}
